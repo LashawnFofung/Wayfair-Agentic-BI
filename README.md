@@ -21,6 +21,7 @@ This repository documents my 8-week externship with Wayfair, focusing on buildin
 
 - <b>Project 5:</b> Market Intelligence Dashboard – Designing a live, auto-updating Google Sheets tool for supply chain managers.
 
+<br>
 
 ## Key Technical Details
 

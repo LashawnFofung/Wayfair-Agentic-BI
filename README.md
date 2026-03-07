@@ -23,7 +23,7 @@ This repository documents an 8-week technical externship focused on building aut
 
 <br>
 
-<b>View labs:</b> [Agentic Workflow Hub](https://github.com/LashawnFofung/Agentic-Workflow-Hub)
+<b>View Labs:</b> [Agentic Workflow Hub](https://github.com/LashawnFofung/Agentic-Workflow-Hub)
 
 <br>
 

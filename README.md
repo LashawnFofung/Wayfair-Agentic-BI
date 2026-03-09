@@ -10,7 +10,7 @@ This repository documents an 8-week technical externship focused on building aut
 ## 🎯 Project Milestones:
 
 - <b>Project 1:</b> Moodboard Agent(The Creative Foundation) – Transforming style prompts into curated visual outputs. 
-
+  - [Lab 01 Moodboard Generator AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2001%3A%20Moodboard%20Generator%20AI%20Agent.md)
 
 - <b>Project 2:</b> Market Trend Discovery – Building agents to scrape and analyze product data and social media. 
 

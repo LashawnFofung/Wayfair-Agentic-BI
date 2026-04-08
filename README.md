@@ -38,16 +38,30 @@ This repository documents an 8-week technical externship focused on building aut
 
 - <b>Dashboard Design:</b> Visualizing real-time data pipelines for business stakeholders.
 
+- <b>Infrastructure & DevOps:</b> Deploying and managing Docker containers to maintain a consistent, isolated development environment for n8n.
+
+- <b>Orchestration:</b> Designing multi-agent systems and complex agentic workflows using n8n.
+
+- <b>LLM Implementation:</b> Advanced prompt engineering and model benchmarking with Gemini 2.0 and Mistral.
+
+- <b>Data Engineering:</b> Automated web scraping, attribute extraction, and structured data processing.
+
+- <b>Generative Media:</b> Integration of vision-language models (FLUX via Hugging Face) for automated asset creation.
+
+
 <br>
+
 
 ## Key Technical Details
 
-- <b>Automation Engine/Orchestration:</b> n8n 
+- <b>Automation Engine/Orchestration:</b> n8n (Self-hosted via Docker)
 
-- <b>LLM:</b> Google Gemini
+- <b>LLM:</b> Google Gemini (via Google AI Studio)
 
 - <b>Dashboard:</b> Google Sheets API
 
 - <b>Hardware Baseline/Environment:</b> Local execution (8GB RAM / Intel i3 or above) 
 
-- <b>Core Skills:</b> Data Scraping, Prompt Engineering, and Dashboard Design
+- <b>Memory:</b> Logginh, Wait, and Merge/Code Nodes
+
+- <b>Infrastructure:</b> Docker (Containerized workflow management)

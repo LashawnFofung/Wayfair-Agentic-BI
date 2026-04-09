@@ -1,6 +1,6 @@
 # Wayfair AI Agent Engineering for Business Intelligence
 
-<b>Status:</b> 🏗️ In-Progress (Live Sessions: March 9 – May 4, 2026) 
+<b>Status:</b> 🏗️ In-Progress 
 
 This repository documents an 8-week technical externship focused on building autonomous AI agents to solve high-scale e-commerce challenges for Wayfair.
 

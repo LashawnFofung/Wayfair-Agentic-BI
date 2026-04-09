@@ -200,8 +200,8 @@ Within 60 seconds, she exports a client-ready concept deck. What previously took
 
 ### My Role: 
 
-  * 1 Product Manager/Designer (user stories, flows, UI)
-  * 1 Engineers (backend orchestration, API integration, frontend, Docker)
+  * Product Manager/Designer (user stories, flows, UI)
+  * Engineer (backend orchestration, API integration, frontend, Docker)
 
 ### Suggested Phases
 

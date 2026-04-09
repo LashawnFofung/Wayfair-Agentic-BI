@@ -209,7 +209,7 @@ Lee quickly pivots, confident enough to add terracotta material to the inventory
 
 * My Role
   * PM/TPM 
-  * Engineer: 1 backend (API/AI integration), 1 dashboard/front-end (Google Sheets, PDF report integration)
+  * Engineer: backend (API/AI integration), dashboard/front-end (Google Sheets, PDF report integration)
   * Designer/Analyst (for report template polishing and narrative QA)
 
 ### Suggested Phases

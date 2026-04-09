@@ -19,6 +19,7 @@ This repository documents an 8-week technical externship focused on building aut
 
 - <b>Project 3:</b> Competitor Benchmarking (Monitoring Agent) – Tracking competitor launches and pricing to identify "whitespace" opportunities.
   -  [Lab 03 Competitor Monitoring AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2003%20Competitor%20Monitoring%20AI%20Agent.md)
+  -  [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Competitor%20Monitoring%20AI%20Agent.md)
 
 - <b>Project 4:</b> AI Insight & Content Agent – Using Gemini to turn raw signals into marketing content and campaign ideas. 
 

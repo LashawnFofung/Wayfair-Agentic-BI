@@ -11,6 +11,7 @@ This repository documents an 8-week technical externship focused on building aut
 
 - <b>Project 1:</b> Moodboard Agent(The Creative Foundation) – Transforming style prompts into curated visual outputs. 
   - [Lab 01 Moodboard Generator AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2001%3A%20Moodboard%20Generator%20AI%20Agent.md)
+  - [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Moodboard%20AI%20Agent.md)
 
 - <b>Project 2:</b> Market Trend Discovery – Building agents to scrape and analyze product data and social media.
   -  [Lab 02 Discovery AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2002%20Discovery%20AI%20Agent.md)

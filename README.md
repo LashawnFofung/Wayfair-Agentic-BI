@@ -25,6 +25,7 @@ This repository documents an 8-week technical externship focused on building aut
 
 
 - <b>Project 5:</b> Unified Market Intelligence Dashboard – Designing a live, auto-updating Google Sheets tool for supply chain managers.
+  - [UI Protype Walkthrough using Base44](https://youtu.be/7shTzdWxmfE)
 
 <br>
 

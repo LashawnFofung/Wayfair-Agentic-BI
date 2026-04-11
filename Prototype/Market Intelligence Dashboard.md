@@ -51,9 +51,9 @@ I applied the CIRCLES Method to ensure every technical node served a business re
 
 ### 📉 Success Metrics (North Star)
 My North Star Metric for this project is Time-to-Insight (TTI).
-•	**Pre-Agent Baseline:** ~900 minutes (Manual research/scraping/design).
-•	**Post-Agent Performance:** ~1 minute (Fully automated orchestration).
-•	**ROI:** 99.8% reduction in labor latency.
+- **Pre-Agent Baseline:** ~900 minutes (Manual research/scraping/design).
+- **Post-Agent Performance:** ~1 minute (Fully automated orchestration).
+- **ROI:** 99.8% reduction in labor latency.
 
    <h1></h1>
    
@@ -63,9 +63,9 @@ My North Star Metric for this project is Time-to-Insight (TTI).
 <br>
 
 ### Key Engineering Wins:
-•	**Normalization Logic:** Used Regex and Custom JavaScript to clean inconsistent HTML strings (e.g., "$189.00") into numeric floats for delta calculations.
-•	**Orchestration:** Built complex branching logic in n8n to handle "Product" vs. "Collection" URL paths without schema breakage.
-•	**Vision Integration:** Successfully mapped LLM-refined prompts to the FLUX API for professional-grade moodboard generation.
+- **Normalization Logic:** Used Regex and Custom JavaScript to clean inconsistent HTML strings (e.g., "$189.00") into numeric floats for delta calculations.
+- **Orchestration:** Built complex branching logic in n8n to handle "Product" vs. "Collection" URL paths without schema breakage.
+- **Vision Integration:** Successfully mapped LLM-refined prompts to the FLUX API for professional-grade moodboard generation.
 
    <h1></h1>
 

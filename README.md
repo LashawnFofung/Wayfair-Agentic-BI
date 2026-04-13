@@ -34,6 +34,8 @@ This repository documents an 8-week technical externship focused on building aut
 
 <br>
 
+[PRD Case Study DEMO](https://youtu.be/faxDVoOzObo)
+
 ## 🛠️ Skills Gained
 - <b>AI Agent Development:</b> Building autonomous workflows using n8n.
 

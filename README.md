@@ -29,6 +29,11 @@ This repository documents an 8-week technical externship focused on building aut
   - [Read about Prototype](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Prototype/Market%20Intelligence%20Dashboard.md)
   - [PRD Case Study DEMO](https://youtu.be/faxDVoOzObo) | [PRD Case Study Presentation PDF](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/PRD%20CASE%20STUDY/Wayfair%20Agentic%20AI%20BI%20PRD%20Case%20Study.pdf)
 
+  <br>
+  
+  - Final Deliverables
+    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/e643a6b40b3148849d8943b22fd2083b)  
+
 <br>
 
 <b>View All Labs & Artifacts:</b> [Agentic Workflow Hub](https://github.com/LashawnFofung/Agentic-Workflow-Hub)

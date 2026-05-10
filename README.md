@@ -32,7 +32,7 @@ This repository documents an 8-week technical externship focused on building aut
   <br>
   
   - Final Deliverables
-    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/e643a6b40b3148849d8943b22fd2083b)  
+    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/1b0678d00d154691bb7c01cddcfaeb2a)  
 
 <br>
 

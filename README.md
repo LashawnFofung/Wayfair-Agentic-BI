@@ -21,7 +21,8 @@ This repository documents an 8-week technical externship focused on building aut
   -  [Lab 03 Competitor Monitoring AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2003%20Competitor%20Monitoring%20AI%20Agent.md)
   -  [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Competitor%20Monitoring%20AI%20Agent.md)
 
-- <b>Project 4:</b> AI Insight & Content Agent – Using Gemini to turn raw signals into marketing content and campaign ideas. 
+- <b>Project 4:</b> AI Insight & Content Agent – Using Gemini to turn raw signals into marketing content and campaign ideas.
+  - [Lab 04: Content Strategy AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Content%20Strategy%20AI%20Agent.json) 
 
 
 - <b>Project 5:</b> Unified Market Intelligence Dashboard – Designing a live, auto-updating Google Sheets tool for supply chain managers.

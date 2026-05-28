@@ -96,8 +96,17 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 
 ## Narrative
 Elena, a Digital Content Planner at Wayfair, sits down on Thursday morning to structure next week's micro-campaign on trend-forward accent pieces. She has the text outputs from the Trend Discovery and Competitor Monitoring teams, but digging through the metric spreadsheets and HTML tables to find actionable visual cues takes her hours. Furthermore, drafting tailored variations across several channel formats often forces her into a repetitive loop of uninspired corporate copywriting.
+
+<br>
+
 Elena opens the AI Insights & Content Generation Agent dashboard. She uploads the raw report files, sets her target Style Persona dropdown to "Earthy Organic," and types "terracotta, handcrafted" into the custom vibe keyword block. She clicks generate.
+
+<br>
+
 Behind the scenes, the n8n pipeline processes her parameters, cleans the report markup, and sends the prompt payload to Mistral. Mistral, operating under a strict anti-cliche filter, ignores standard boilerplate expressions and designs a curated strategy card.
+
+<br>
+
 Within ninety seconds, Elena's screen refreshes into a dashboard. Under the Creative tab, she discovers an Instagram copy option that reads cleanly and avoids generic corporate buzzwords. Under the Design tab, a dedicated layout displays an asset palette complete with specific interior styling directions and hex color swatches ready to send to the design studio. Elena switches a card's status flag from To Do to Ready, clicks a button to copy the caption, pastes it directly into her scheduling queue, and prints the layout as a polished PDF report for her creative director's afternoon sync.
 
 <br>

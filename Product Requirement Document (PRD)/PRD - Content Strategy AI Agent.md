@@ -76,16 +76,25 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 <br>
 
 ### Core Experience Flow
+
 [User Form Entry] ➔ [n8n Text Extraction] ➔ [Mistral LLM Execution] ➔ [JSON Schema Check] ➔ [Tabbed Dashboard Render]
-Step 1: Input Parameter Selections: User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
-Step 2: Workflow Extraction: The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.
-Step 3: Guardrail Enforcement: The context string plus custom persona variables enter the Mistral model node under the constraints of the Anti-AI-ism filter.
-Step 4: Layout Materialization: The JSON output passes down to an HTML template node that builds a responsive, stylized, multi-channel marketing dashboard.
-Step 5: Output Review & Asset Capture: The user clicks through functional dashboard tabs, modifies status dropdowns, copies copy blocks to their clipboard, or outputs the layout as a PDF presentation report using native browser print styles.
-Advanced Features & Edge Cases
-JSON Validation Defect Handling: If the LLM produces corrupted JSON notation, the workflow falls back to a structural parsing safeguard that auto-formats or safely captures unparsed text blocks to avoid complete layout collapse.
-Empty Visual Array Handling: When the prompt fails to extract valid hex color schemes or physical texture tokens, the system injects default baseline Wayfair asset codes to keep visual cards readable.
-Narrative
+
+- Step 1: Input Parameter Selections: User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
+- Step 2: Workflow Extraction: The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.
+- Step 3: Guardrail Enforcement: The context string plus custom persona variables enter the Mistral model node under the constraints of the Anti-AI-ism filter.
+- Step 4: Layout Materialization: The JSON output passes down to an HTML template node that builds a responsive, stylized, multi-channel marketing dashboard.
+- Step 5: Output Review & Asset Capture: The user clicks through functional dashboard tabs, modifies status dropdowns, copies copy blocks to their clipboard, or outputs the layout as a PDF presentation report using native browser print styles.
+
+
+<br>
+
+## Advanced Features & Edge Cases
+- JSON Validation Defect Handling: If the LLM produces corrupted JSON notation, the workflow falls back to a structural parsing safeguard that auto-formats or safely captures unparsed text blocks to avoid complete layout collapse.
+- Empty Visual Array Handling: When the prompt fails to extract valid hex color schemes or physical texture tokens, the system injects default baseline Wayfair asset codes to keep visual cards readable.
+
+<br>
+
+## Narrative
 Elena, a Digital Content Planner at Wayfair, sits down on Thursday morning to structure next week's micro-campaign on trend-forward accent pieces. She has the text outputs from the Trend Discovery and Competitor Monitoring teams, but digging through the metric spreadsheets and HTML tables to find actionable visual cues takes her hours. Furthermore, drafting tailored variations across several channel formats often forces her into a repetitive loop of uninspired corporate copywriting.
 Elena opens the AI Insights & Content Generation Agent dashboard. She uploads the raw report files, sets her target Style Persona dropdown to "Earthy Organic," and types "terracotta, handcrafted" into the custom vibe keyword block. She clicks generate.
 Behind the scenes, the n8n pipeline processes her parameters, cleans the report markup, and sends the prompt payload to Mistral. Mistral, operating under a strict anti-cliche filter, ignores standard boilerplate expressions and designs a curated strategy card.

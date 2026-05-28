@@ -33,6 +33,7 @@ This repository documents an 8-week technical externship focused on building aut
 
   <br>
   
+  - [Lab 05: Final AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2005%20Final%20AI%20Agent.md)
   - Final Deliverables
     - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/1b0678d00d154691bb7c01cddcfaeb2a)
     - [View JSON: Updated Market Trend AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Market%20Trend%20Discovery%20v2.json)

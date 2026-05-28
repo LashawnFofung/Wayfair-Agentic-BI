@@ -34,7 +34,10 @@ This repository documents an 8-week technical externship focused on building aut
   <br>
   
   - Final Deliverables
-    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/1b0678d00d154691bb7c01cddcfaeb2a)  
+    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/1b0678d00d154691bb7c01cddcfaeb2a)
+    - [View JSON: Updated Market Trend AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Market%20Trend%20Discovery%20v2.json)
+    - [View JSON: Updated Competitor Monitoring AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Competitor%20Monitoring%20AI%20Agent%20v2.json)
+    - [View JSON: Dashboard Builder AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Dashboard%20Builder%20Agent.json)
 
 <br>
 

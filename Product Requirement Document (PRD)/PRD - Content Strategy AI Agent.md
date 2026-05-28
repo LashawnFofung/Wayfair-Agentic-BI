@@ -79,11 +79,11 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 
 [User Form Entry] ➔ [n8n Text Extraction] ➔ [Mistral LLM Execution] ➔ [JSON Schema Check] ➔ [Tabbed Dashboard Render]
 
-- Step 1: Input Parameter Selections: User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
-- Step 2: Workflow Extraction: The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.
-- Step 3: Guardrail Enforcement: The context string plus custom persona variables enter the Mistral model node under the constraints of the Anti-AI-ism filter.
-- Step 4: Layout Materialization: The JSON output passes down to an HTML template node that builds a responsive, stylized, multi-channel marketing dashboard.
-- Step 5: Output Review & Asset Capture: The user clicks through functional dashboard tabs, modifies status dropdowns, copies copy blocks to their clipboard, or outputs the layout as a PDF presentation report using native browser print styles.
+- <b>Step 1: Input Parameter Selections:</b> User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
+- <b>Step 2: Workflow Extraction:</b> The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.
+- <b>Step 3: Guardrail Enforcement:</b> The context string plus custom persona variables enter the Mistral model node under the constraints of the Anti-AI-ism filter.
+- <b>Step 4: Layout Materialization:</b> The JSON output passes down to an HTML template node that builds a responsive, stylized, multi-channel marketing dashboard.
+- <b>Step 5: Output Review & Asset Capture:</b> The user clicks through functional dashboard tabs, modifies status dropdowns, copies copy blocks to their clipboard, or outputs the layout as a PDF presentation report using native browser print styles.
 
 
 <br>

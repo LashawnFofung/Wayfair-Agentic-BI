@@ -32,30 +32,50 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 <br>
 
 ## User Stories
-Content Strategist
-As a Content Strategist, I want to upload Project 2 Trend Discovery and Project 3 Competitor reports so that the model extracts actionable data without manual copy-pasting.
-As a Content Strategist, I want to specify a "Style Persona" (e.g., Earthy Organic, Minimalist, Maximalist) so that the generated copy aligns perfectly with specific micro-trends and design styles.
-As a Content Strategist, I want an "Anti-AI-ism Filter" applied to all outputs so that I don't waste time editing out generic corporate fluff or cliche phrases like "elevate your space."
-Marketing Manager
-As a Marketing Manager, I want a dedicated interactive component with one-click copy utilities for generated social media captions, headlines, and sub-headers so that I can rapidly spin up channel testing variables.
-As a Marketing Manager, I want to dynamically update the execution or workflow readiness status of various copy components (To Do, Drafting, Ready) inside my dashboard view to track campaign preparation.
-Functional Requirements
-1. Ingestion & File Extraction (Priority: High)
-HTML Stripping Engine: Core workflow node must receive raw web or report uploads (Project 2 and Project 3 artifacts) and systematically purge markup tags, rendering clean plain text strings for downstream context ingestion.
-Multi-Variable Form Interface: The workflow entry interface must host dropdown controls for Style Persona profiles alongside an open text field for custom comma-separated Vibe Keywords.
-2. Orchestrated Prompt & Anti-AI Guardrails (Priority: High)
-Role-Based Execution: Integrates mistral-large-latest via an overarching systemic prompt establishing the model as an expert, highly refined senior content strategist at Wayfair.
-Enforced JSON Structuring: The LLM prompt must contain strict formatting parameters requiring a non-negotiable JSON output schema including keys for editorial_strategy, instagram_caption, email_header, and a nested mood_board_assets array.
-Lexicon Negative Restrictions (Anti-AI-ism Filter): Outlaws specific phrases, forbidding terms such as "elevate your space", "sanctuary", "game changer", or "redefine your home".
-3. Front-End Content Delivery Engine (Priority: Medium)
-Tabbed Interface Dashboard: Converts standard layout blocks into a 3-tab front-end browser view structured across Strategy, Design, and Creative modules.
-Status Tracking Widgets: Uses local web storage variables to preserve user dropdown updates to workflow status states (To Do, Drafting, Ready).
-Clipboard Interactivity: Employs explicit JavaScript handlers to allow users to copy generated marketing text immediately upon clicking.
-User Experience
-Entry Point & First-Time User Experience
-Users navigate to the self-hosted n8n webhook link or configured browser web form.
-The interface displays simple fields to upload background HTML data reports, select targeted Style Personas, and inject custom contextual keywords.
-Core Experience Flow
+
+### Content Strategist
+- As a Content Strategist, I want to upload Project 2 Trend Discovery and Project 3 Competitor reports so that the model extracts actionable data without manual copy-pasting.
+- As a Content Strategist, I want to specify a "Style Persona" (e.g., Earthy Organic, Minimalist, Maximalist) so that the generated copy aligns perfectly with specific micro-trends and design styles.
+- As a Content Strategist, I want an "Anti-AI-ism Filter" applied to all outputs so that I don't waste time editing out generic corporate fluff or cliche phrases like "elevate your space."
+
+<br>
+
+### Marketing Manager
+- As a Marketing Manager, I want a dedicated interactive component with one-click copy utilities for generated social media captions, headlines, and sub-headers so that I can rapidly spin up channel testing variables.
+- As a Marketing Manager, I want to dynamically update the execution or workflow readiness status of various copy components (To Do, Drafting, Ready) inside my dashboard view to track campaign preparation.
+
+<br>
+
+## Functional Requirements
+<b>1. Ingestion & File Extraction (Priority: High)</b>
+  - HTML Stripping Engine: Core workflow node must receive raw web or report uploads (Project 2 and Project 3 artifacts) and systematically purge markup tags, rendering clean plain text strings for downstream context ingestion.
+  - Multi-Variable Form Interface: The workflow entry interface must host dropdown controls for Style Persona profiles alongside an open text field for custom comma-separated Vibe Keywords.
+
+<br>
+
+<b>2. Orchestrated Prompt & Anti-AI Guardrails (Priority: High)</b>
+  - Role-Based Execution: Integrates mistral-large-latest via an overarching systemic prompt establishing the model as an expert, highly refined senior content strategist at Wayfair.
+  - Enforced JSON Structuring: The LLM prompt must contain strict formatting parameters requiring a non-negotiable JSON output schema including keys for editorial_strategy, instagram_caption, email_header, and a nested mood_board_assets array.
+  - Lexicon Negative Restrictions (Anti-AI-ism Filter): Outlaws specific phrases, forbidding terms such as "elevate your space", "sanctuary", "game changer", or "redefine your home".
+
+<br>
+
+<b>3. Front-End Content Delivery Engine (Priority: Medium)</b>
+  - Tabbed Interface Dashboard: Converts standard layout blocks into a 3-tab front-end browser view structured across Strategy, Design, and Creative modules.
+  - Status Tracking Widgets: Uses local web storage variables to preserve user dropdown updates to workflow status states (To Do, Drafting, Ready).
+  - Clipboard Interactivity: Employs explicit JavaScript handlers to allow users to copy generated marketing text immediately upon clicking.
+
+<br>
+
+## User Experience
+
+### Entry Point & First-Time User Experience
+  - Users navigate to the self-hosted n8n webhook link or configured browser web form.
+  - The interface displays simple fields to upload background HTML data reports, select targeted Style Personas, and inject custom contextual keywords.
+
+<br>
+
+### Core Experience Flow
 [User Form Entry] ➔ [n8n Text Extraction] ➔ [Mistral LLM Execution] ➔ [JSON Schema Check] ➔ [Tabbed Dashboard Render]
 Step 1: Input Parameter Selections: User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
 Step 2: Workflow Extraction: The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.

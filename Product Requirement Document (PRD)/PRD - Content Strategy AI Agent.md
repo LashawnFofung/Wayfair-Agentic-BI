@@ -10,10 +10,10 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 ## Goals
 
 ### Business Goals
-- Accelerate Go-to-Market Copywriting:</b> Compress the campaign creative brief lifecycle from 5 business days down to minutes.
-- Eliminate AI Jargon / Enforce Tone Integrity:</b> Ensure 100% adherence to Wayfair's distinct brand voice and specific style personas while filtering out repetitive "corporate fluff".
-- Scale Multi-Channel Content Output:</b> Automate simultaneous generation of cross-channel collateral (Editorial strategies, Instagram captions, Email marketing headers) from a single analytical report upload.
-- Fuel Graphic Design Pipelines:</b> Supply concrete, structured spatial, color, and tactile descriptions (mood_board_assets) to cross-functional visual layout engines.
+- <b>Accelerate Go-to-Market Copywriting:</b> Compress the campaign creative brief lifecycle from 5 business days down to minutes.
+- <b>Eliminate AI Jargon / Enforce Tone Integrity:</b> Ensure 100% adherence to Wayfair's distinct brand voice and specific style personas while filtering out repetitive "corporate fluff".
+- <b>Scale Multi-Channel Content Output:</b> Automate simultaneous generation of cross-channel collateral (Editorial strategies, Instagram captions, Email marketing headers) from a single analytical report upload.
+- <b>Fuel Graphic Design Pipelines:</b> Supply concrete, structured spatial, color, and tactile descriptions (mood_board_assets) to cross-functional visual layout engines.
 
 <br>
 
@@ -48,22 +48,22 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 
 ## Functional Requirements
 <b>1. Ingestion & File Extraction (Priority: High)</b>
-  - HTML Stripping Engine:</b> Core workflow node must receive raw web or report uploads (Project 2 and Project 3 artifacts) and systematically purge markup tags, rendering clean plain text strings for downstream context ingestion.
-  - Multi-Variable Form Interface:</b> The workflow entry interface must host dropdown controls for Style Persona profiles alongside an open text field for custom comma-separated Vibe Keywords.
+  - <b>HTML Stripping Engine:</b> Core workflow node must receive raw web or report uploads (Project 2 and Project 3 artifacts) and systematically purge markup tags, rendering clean plain text strings for downstream context ingestion.
+  - <b>Multi-Variable Form Interface:</b> The workflow entry interface must host dropdown controls for Style Persona profiles alongside an open text field for custom comma-separated Vibe Keywords.
 
 <br>
 
 <b>2. Orchestrated Prompt & Anti-AI Guardrails (Priority: High)</b>
-  - Role-Based Execution:</b> Integrates mistral-large-latest via an overarching systemic prompt establishing the model as an expert, highly refined senior content strategist at Wayfair.
-  - Enforced JSON Structuring:</b> The LLM prompt must contain strict formatting parameters requiring a non-negotiable JSON output schema including keys for editorial_strategy, instagram_caption, email_header, and a nested mood_board_assets array.
-  - Lexicon Negative Restrictions (Anti-AI-ism Filter):</b> Outlaws specific phrases, forbidding terms such as "elevate your space", "sanctuary", "game changer", or "redefine your home".
+  - <b>Role-Based Execution:</b> Integrates mistral-large-latest via an overarching systemic prompt establishing the model as an expert, highly refined senior content strategist at Wayfair.
+  - <b>Enforced JSON Structuring:</b> The LLM prompt must contain strict formatting parameters requiring a non-negotiable JSON output schema including keys for editorial_strategy, instagram_caption, email_header, and a nested mood_board_assets array.
+  - <b>Lexicon Negative Restrictions (Anti-AI-ism Filter):</b> Outlaws specific phrases, forbidding terms such as "elevate your space", "sanctuary", "game changer", or "redefine your home".
 
 <br>
 
 <b>3. Front-End Content Delivery Engine (Priority: Medium)</b>
-  - Tabbed Interface Dashboard:</b> Converts standard layout blocks into a 3-tab front-end browser view structured across Strategy, Design, and Creative modules.
-  - Status Tracking Widgets:</b> Uses local web storage variables to preserve user dropdown updates to workflow status states (To Do, Drafting, Ready).
-  - Clipboard Interactivity:</b> Employs explicit JavaScript handlers to allow users to copy generated marketing text immediately upon clicking.
+  - <b>Tabbed Interface Dashboard:</b> Converts standard layout blocks into a 3-tab front-end browser view structured across Strategy, Design, and Creative modules.
+  - <b>Status Tracking Widgets:</b> Uses local web storage variables to preserve user dropdown updates to workflow status states (To Do, Drafting, Ready).
+  - <b>Clipboard Interactivity:</b> Employs explicit JavaScript handlers to allow users to copy generated marketing text immediately upon clicking.
 
 <br>
 
@@ -89,8 +89,8 @@ The AI Insights & Content Generation Agent is an automated workflow engine that 
 <br>
 
 ## Advanced Features & Edge Cases
-- JSON Validation Defect Handling:</b> If the LLM produces corrupted JSON notation, the workflow falls back to a structural parsing safeguard that auto-formats or safely captures unparsed text blocks to avoid complete layout collapse.
-- Empty Visual Array Handling:</b> When the prompt fails to extract valid hex color schemes or physical texture tokens, the system injects default baseline Wayfair asset codes to keep visual cards readable.
+- <b>JSON Validation Defect Handling:</b> If the LLM produces corrupted JSON notation, the workflow falls back to a structural parsing safeguard that auto-formats or safely captures unparsed text blocks to avoid complete layout collapse.
+- <b>Empty Visual Array Handling:</b> When the prompt fails to extract valid hex color schemes or physical texture tokens, the system injects default baseline Wayfair asset codes to keep visual cards readable.
 
 <br>
 
@@ -105,66 +105,66 @@ Within ninety seconds, Elena's screen refreshes into a dashboard. Under the Crea
 ## Success Metrics
 
 ### User-Centric Metrics
-- Content Assembly Speed:</b> Reduce time spent drafting channel copy variations from hours to under 3 minutes per campaign.
-- UX Copy and Paste Engagement:</b> Rate of user clicks on the dynamic dashboard copy-to-clipboard elements.
-- Content Persona Variety:</b> Multi-persona execution frequency across team analysts (target: regular utilization of at least 3 distinct style profiles monthly).
+- <b>Content Assembly Speed:</b> Reduce time spent drafting channel copy variations from hours to under 3 minutes per campaign.
+- <b>UX Copy and Paste Engagement:</b> Rate of user clicks on the dynamic dashboard copy-to-clipboard elements.
+- <b>Content Persona Variety:</b> Multi-persona execution frequency across team analysts (target: regular utilization of at least 3 distinct style profiles monthly).
 
 <br>
 
 ### Business & Workflow Metrics
-- AI Output Quality Acceptance Rate:</b> Percentage of generated marketing copy requiring zero additional manual text removal post-generation (target: >85%).
-- Structured Visual Integration:</b> Number of generation outputs successfully outputting accurate mood_board_assets blocks.
-- Schema Integrity Validation Rate:</b> Rate of automated text passes converting into valid JSON objects without downstream failure (target: 100%).
+- <b>AI Output Quality Acceptance Rate:</b> Percentage of generated marketing copy requiring zero additional manual text removal post-generation (target: >85%).
+- <b>Structured Visual Integration:</b> Number of generation outputs successfully outputting accurate mood_board_assets blocks.
+- <b>Schema Integrity Validation Rate:</b> Rate of automated text passes converting into valid JSON objects without downstream failure (target: 100%).
 
 <br>
 
 ## Technical Considerations
 
 ### Technical Needs
-- AI Orchestration Framework:</b> n8n workflow software configured with active HTTP webhooks and functional data injection properties.
-- LLM API Endpoints:</b> Stable access to the Mistral AI API platform utilizing the mistral-large-latest inference model.
-- Web UI Formatting Infrastructure:</b> Core knowledge of semantic HTML5 layouts, embedded responsive CSS styles, and structural JavaScript code blocks.
+- <b>AI Orchestration Framework:</b> n8n workflow software configured with active HTTP webhooks and functional data injection properties.
+- <b>LLM API Endpoints:</b> Stable access to the Mistral AI API platform utilizing the mistral-large-latest inference model.
+- <b>Web UI Formatting Infrastructure:</b> Core knowledge of semantic HTML5 layouts, embedded responsive CSS styles, and structural JavaScript code blocks.
 
 <br>
 
 ### Integration Points
-- Upstream Handoff:</b> Ingests structural text components, volume indicators, and pricing opportunities outputted by Step 3 (Competitor Monitoring).
-- Downstream Integration:</b> Supplies clean HTML data structures and color palette definitions to enrich the Step 5 consolidated Market Intelligence Dashboard interface.
+- <b>Upstream Handoff:</b> Ingests structural text components, volume indicators, and pricing opportunities outputted by Step 3 (Competitor Monitoring).
+- <b>Downstream Integration:</b> Supplies clean HTML data structures and color palette definitions to enrich the Step 5 consolidated Market Intelligence Dashboard interface.
 
 <br>
 
 ### Storage, Performance & Privacy
-- Transient Session Architecture:</b> Generated campaign data is mapped instantly to the client's localized view engine; persistent user telemetry isn't collected, ensuring complete internal corporate security.
-- Browser Data Lifecycle:</b> Interface state tracking markers (To Do / Drafting) rely exclusively on the client web browser's local storage environment, bypassing backend database complexity.
-- Execution Latency Requirements:</b> Complete analytical parsing and layout delivery operations must finish within a maximum system runtime limit of 15 seconds per call.
+- <b>Transient Session Architecture:</b> Generated campaign data is mapped instantly to the client's localized view engine; persistent user telemetry isn't collected, ensuring complete internal corporate security.
+- <b>Browser Data Lifecycle:</b> Interface state tracking markers (To Do / Drafting) rely exclusively on the client web browser's local storage environment, bypassing backend database complexity.
+- <b>Execution Latency Requirements:</b> Complete analytical parsing and layout delivery operations must finish within a maximum system runtime limit of 15 seconds per call.
 
 
 ## Milestones & Sequencing
 
 ### Project Estimate
-- Duration: 1 Week (Optimized, focused sprint framework).
+- <b>Duration:</b> 1 Week (Optimized, focused sprint framework).
 
 <br>
 
 ### Team Allocation
-- Lead AI Engineer: Builds n8n workflows, optimizes system logic prompts, and implements JSON structuring filters.
-- Front-End UX Developer: Creates response dashboards, integrates functional interactive widgets, and structures print styling behaviors.
+- <b>Lead AI Engineer:</b> Builds n8n workflows, optimizes system logic prompts, and implements JSON structuring filters.
+- <b>Front-End UX Developer:</b> Creates response dashboards, integrates functional interactive widgets, and structures print styling behaviors.
 
 <br>
 
 ### Suggested Phases
 ### Phase 1: Ingestion Architecture & Prompt Conditioning
-- Key Deliverables: Establish working n8n file ingestion nodes. Configure the Mistral prompt block with the persona rules engine and anti-cliche filters.
-- Dependencies: Configured and active Mistral AI API keys.
+- <b>Key Deliverables:</b> Establish working n8n file ingestion nodes. Configure the Mistral prompt block with the persona rules engine and anti-cliche filters.
+- <b>Dependencies:</b> Configured and active Mistral AI API keys.
 
 <br>
 
 ### Phase 2: Interface Integration & Functional Testing
-- Key Deliverables: Embed JSON responses directly into tabbed HTML dashboards. Integrate clipboard copy buttons and localized status dropdown triggers.
-- Dependencies: Clean, error-free JSON outputs generated by Phase 1 workflow models.
+- <b>Key Deliverables:</b> Embed JSON responses directly into tabbed HTML dashboards. Integrate clipboard copy buttons and localized status dropdown triggers.
+- <b>Dependencies:</b> Clean, error-free JSON outputs generated by Phase 1 workflow models.
 
 <br>
 
 ### Phase 3: Validation, Hardening & Pipeline Deployment
-- Key Deliverables: Run multi-variant stress tests against corrupt JSON arrays. Validate dashboard scaling and layout structure on cross-functional devices. Complete all system deployment documentation.
-- Dependencies: Step 5 team alignment on upstream schema expectations.
+- <b>Key Deliverables:</b> Run multi-variant stress tests against corrupt JSON arrays. Validate dashboard scaling and layout structure on cross-functional devices. Complete all system deployment documentation.
+- <b>Dependencies:</b> Step 5 team alignment on upstream schema expectations.

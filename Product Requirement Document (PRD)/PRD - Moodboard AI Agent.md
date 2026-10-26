@@ -1,235 +1,240 @@
 # PRD: Moodboard AI Agent
 
-### Summary
+| | |
+|---|---|
+| **Pipeline step** | 1 of 5 · **Moodboard** → Trend Discovery → Competitor Monitoring → Insights & Content → Dashboard |
+| **Owner** | Lashawn Fofung (Technical Product Manager and builder) |
+| **Status** | MVP built · v1 requirements below |
+| **Build** | [Lab 01 write-up](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2001%3A%20Moodboard%20Generator%20AI%20Agent.md) · [Workflow (JSON)](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Moodboard%20Agent%20N8N%20Workflow.json) · [Sample output: Scandinavian jute rug](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Lab%20Artifacts/Lab%201/Moodboard%20Agent%20Output%20Round%20Jute%20Rug%20Scandinavian.png) · [Demo](https://youtu.be/d6nro9oYpK4) |
 
-Moodboard AI Agent is an AI-powered web tool that translates abstract style descriptors (e.g., “Modern Farmhouse”, “Coastal Luxe”) into high-fidelity visual moodboards within 60 seconds. It leverages Gemini 2.0 LLM reasoning to refine prompts and Hugging Face FLUX for parallel image generation. Designed for Creative Directors, Social Media Managers, and Interior Designers, this product automates manual image sourcing and visual prototyping.
+> *Externship project using Wayfair as the business case. Not affiliated with or endorsed by Wayfair.*
 
----
-
-## Goals
-
-### Business Goals
-
-* **Eliminate Manual Bottlenecks**: Remove the hours-long manual image sourcing step in seasonal campaign planning.
-* **Fast Time-to-Visual**: Reduce moodboard creation time from several hours to under 60 seconds.
-* **Increase Design Throughput**: Enable design teams to prototype and iterate on multiple concepts quickly for higher output during seasonal launches.
-* **Drive Adoption**: Ensure adoption by at least three distinct creative personas within 60 days of launch.
-
-### User Goals
-
-* **Rapid Prototyping**: Instantly translate abstract style ideas into fully formed moodboards.
-* **On-Brand Consistency**: Generate assets that reflect brand guidelines and current aesthetics without endless curation.
-* **Client-Ready Outputs**: Present polished “concept feel” visuals to clients before narrowing in on specific SKUs or products.
-* **Visual Alignment**: Achieve stakeholder buy-in faster with more accurate, on-point visuals.
-
-### Non-Goals
-
-* Integration with e-commerce shopping carts or product catalogs.
-* Individual SKU selection, tagging, or price tracking.
-* Workflow automation for post-moodboard tasks (e.g., campaign scheduling, detailed asset management).
+[← Back to project overview](../README.md)
 
 ---
 
-## User Stories
-
-* **Creative Director**
-
-  * As a Creative Director, I want to input a theme descriptor (e.g., “Midcentury Cozy”) so that I can rapidly prototype campaign “looks” without manual image searching.
-  * As a Creative Director, I want to review the technical prompts before image generation so I can ensure creative alignment.
-
-* **Social Media Manager**
-
-  * As a Social Media Manager, I want to generate on-brand moodboards keyed to trending styles, so my assets stay current and engaging.
-  * As a Social Media Manager, I want to easily export the moodboard and color palette for use in post templates.
-
-* **Interior Designer**
-
-  * As an Interior Designer, I want to visualize a “concept feel” for a client presentation without selecting individual products, saving time during early-stage pitching.
-  * As an Interior Designer, I want the final moodboard to include a color palette with hex codes for easy communication with clients and contractors.
-
-**Acceptance Criteria** (for all personas):
-
-* System produces a moodboard containing 4 distinct, relevant images.
-* Primary color palette (with hex codes) is extracted and displayed.
-* Completed board and palette can be exported as a single downloadable file.
+## Contents
+1. [Summary](#1-summary)
+2. [Problem](#2-problem)
+3. [Goals & Non-Goals](#3-goals--non-goals)
+4. [Users & User Stories](#4-users--user-stories)
+5. [Functional Requirements](#5-functional-requirements)
+6. [Non-Functional Requirements](#6-non-functional-requirements)
+7. [User Experience](#7-user-experience)
+8. [Narrative](#8-narrative)
+9. [Success Metrics](#9-success-metrics)
+10. [Technical Considerations](#10-technical-considerations)
+11. [Risks & Mitigations](#11-risks--mitigations)
+12. [Open Questions](#12-open-questions)
+13. [Milestones](#13-milestones)
+14. [MVP Delivered vs. v1 Spec](#14-mvp-delivered-vs-v1-spec)
 
 ---
 
-## Functional Requirements
+## 1. Summary
 
-* **Theme-to-Prompt Parsing (Priority: P0)**
-
-  * Gemini 2.0 API receives user’s abstract style descriptor.
-  * AI refines and decomposes input into 4 technical, visually distinct prompts.
-  * User is shown prompts for optional review and edit.
-
-* **Image Generation (Priority: P0)**
-
-  * Prompted by Gemini, 4 calls are made to Hugging Face FLUX API to generate distinct high-quality images.
-  * Images are displayed in a single moodboard grid (2x2).
-
-* **Color Palette Extraction (Priority: P1)**
-
-  * Images processed for color quantization.
-  * Primary color palette (including at least 4-6 hex codes) extracted and displayed beneath the moodboard.
-  * Copy-to-clipboard functionality on each hex code.
+The Moodboard AI Agent turns a style idea such as "Modern Farmhouse" or "Coastal Luxe" into a visual moodboard **in under 60 seconds**. Google Gemini expands the idea into detailed image prompts, and the Hugging Face **FLUX** model generates the images. The tool replaces hours of manual image sourcing for Creative Directors, Social Media Managers, and Interior Designers at the start of a campaign.
 
 ---
 
-## User Experience
+## 2. Problem
 
-**Entry Point & First-Time User Experience**
+| | |
+|---|---|
+| **Today** | Creative teams build seasonal moodboards by hand, searching Pinterest and stock libraries and sharing drafts over Slack and email |
+| **Time** | Hours per board, before any creative work starts |
+| **Cost** | Slow campaign kickoff, fewer concepts explored, and a less consistent visual direction across teams |
 
-* User navigates to a clean, self-hosted web UI deployed from Docker.
-* If first-time, a 30-second onboarding overlay explains the workflow (input descriptor → prompt review → moodboard + palette).
-* No mandatory login; one-click start to encourage discovery.
-
-**Core Experience**
-
-* **Step 1:** User enters a style descriptor (e.g., “Modern Farmhouse”) into a prominent search-style field.
-  * Minimal friction UI: large, inviting input and action button.
-  * Input validates for non-empty content; if ambiguous/empty, prompts clarification with suggested examples.
-* **Step 2:** Gemini 2.0 parses the descriptor into 4 technical prompts.
-  * System displays the four prompts; user can edit or approve as-is.
-  * UI clearly distinguishes between original input and AI’s breakdown, offering transparency.
-* **Step 3:** Upon prompt approval, FLUX API generates 4 high-fidelity images in parallel.
-  * Progress indicator animates, updates shown if API retry/backoff occurs.
-* **Step 4:** Images are displayed in a seamless, full-bleed 2x2 grid as the completed moodboard.
-  * Each image visually distinct, rendered at high resolution.
-* **Step 5:** Below the image grid, extracted primary color palette is displayed as a horizontal strip of swatches, each with a hex code.
-  * Each swatch: click-to-copy hex.
-* **Step 6:** A single-click “Export” button bundles the grid and palette as a downloadable PNG or PDF.
-  * Confirmation toast for successful export.
-
-**Advanced Features & Edge Cases**
-
-* On API rate limit/timeout: Workflow surfaces a progress spinner and message (“Retrying—Hang tight!”) and retries up to 3x before showing an error with actionable next steps.
-* On ambiguous/empty input: Prompt overlay suggests style descriptor examples and requests user clarification.
-* If image generation fails for one or more prompts, placeholders maintain visual grid but display tooltip error for the affected slot.
-
-**UI/UX Highlights**
-
-* Minimal, distraction-free layout focused on the creative task.
-* Responsive and optimized for desktop and tablet (primary use cases).
-* High-contrast, accessible color palette display with readable hex codes.
-* Progress indicators for all asynchronous actions.
-* Export and copy actions have instant feedback confirmation.
-* No persistent personal data collection; privacy-first design.
+**Problem statement:** Turning an abstract style idea into a shared visual takes hours of manual sourcing, which slows campaign kickoff and limits how many concepts a team can explore.
 
 ---
 
-## Narrative
+## 3. Goals & Non-Goals
 
-A Creative Director at a leading home goods brand sits down to kick off development on a new autumn collection. Her challenge is to quickly converge the creative team around an inspiring vibe—something like “Warm Minimalist Autumn”—that will drive the season’s marketing, visual direction, and product styling. Traditionally, building a moodboard would involve hours spent in Pinterest rabbit holes, wrangling assets, and rounds of sharing and edits over Slack and email.
+### Business goals
+| Goal | Target |
+|---|---|
+| Remove the manual image-sourcing step | Moodboard creation from **hours to under 60 seconds** |
+| Increase design throughput | More concepts explored per seasonal launch |
+| Drive adoption | Active use by **all three personas within 60 days** of launch |
 
-Today, she types “Warm Minimalist Autumn” into the Moodboard AI Agent’s sleek browser interface. Instantly, the Gemini engine parses her intent and proposes four refined prompts: cozy textures, muted foliage palettes, sculptural modern furnishings, and soft seasonal light. With a single click, four unique high-fidelity images materialize, comprising a perfectly cohesive moodboard. Below, the tool surfaces an extracted color palette—complete with hex codes—anchoring the visual story for the season.
+### User goals
+- **Rapid prototyping:** turn a style idea into a finished moodboard right away.
+- **On-brand output:** visuals that follow brand guidelines without endless curation.
+- **Client-ready concepts:** show the "feel" of a concept before choosing specific products.
+- **Faster alignment:** get stakeholder buy-in with visuals instead of descriptions.
 
-Within 60 seconds, she exports a client-ready concept deck. What previously took a half-day of manual sourcing and asynchronous collaboration is now a one-minute workflow. The whole business is empowered to move faster; visual direction is locked earlier, the seasonal vision resonates more strongly, and the team has more time to drive execution, iterate on deeper creative tasks, and delight clients with best-in-class visuals.
-
----
-
-## Success Metrics
-
-### User-Centric Metrics
-
-* **Moodboard generation time**: >95% of boards delivered in under 60 seconds (measured via backend logs).
-* **Stakeholder visual style alignment**: ≥90% “on-point” score in post-session stakeholder surveys.
-* **User engagement**: Number of completed moodboards and exports per user per week.
-
-### Business Metrics
-
-* **Time-to-first-visual**: Median time reduced from hours to under 5 minutes in tracked projects.
-* **Persona adoption**: Active use by Creative Director, Social Media Manager, and Interior Designer personas within 60 days post-launch.
-
-### Technical Metrics
-
-* **API success rate**: >99% of Gemini and FLUX API calls succeed or recover via retry.
-* **Image generation latency**: P95 under 60 seconds from input to export capability.
-* **Uptime**: >99.5% on self-hosted Docker deployment.
-
-### Tracking Plan
-
-* Input submission events
-* Prompt review/approval events
-* Image generation completion events
-* Download/export events
-* Retry trigger events
-* Hex copy-to-clipboard events
+### Non-goals (v1)
+- **No product or catalog integration.** No SKU selection, tagging, or pricing.
+- **No post-moodboard workflow,** such as campaign scheduling or asset management.
+- **No customer-facing or published imagery.** Boards are internal concept material.
 
 ---
 
-## Technical Considerations
+## 4. Users & User Stories
 
-### Technical Needs
-
-* **Orchestration Layer**: Manages prompt parsing, parallel image generation, and workflow state.
-* **API Integration**: Connectors for Gemini 2.0 (LLM) and Hugging Face FLUX (image generation).
-* **Color Quantization Module**: Processes generated images for key palette extraction.
-* **Frontend Web UI**: Simple, performant SPA, containerized via Docker.
-
-### Integration Points
-
-* **Gemini 2.0 API** (LLM for prompt refinement).
-* **Hugging Face Inference API** (FLUX for image generation).
-
-### Data Storage & Privacy
-
-* No user accounts, persistent storage, or cloud uploads.
-* All input and output data remains within the self-hosted Docker environment for IP and content security.
-* Only transient in-memory state during session; nothing written to disk after export.
-
-### Scalability & Performance
-
-* Designed for single or small team concurrent usage.
-* Horizontal scaling via Docker Compose possible for larger teams.
-* Optimized parallel processing for 4-image workflows; backoff and retry logic for rare API congestion.
-
-### Potential Challenges
-
-* Managing API rate limits for both Gemini and FLUX (via exponential backoff and smart retry).
-* Ensuring all AI calls, including image generation, fall within the 60s SLA.
-* Robust error handling and user feedback in offline or partial-failure situations.
+| User | Story | Acceptance criteria |
+|---|---|---|
+| **Creative Director** | As a Creative Director, I want to enter a theme (e.g., "Midcentury Cozy") so I can prototype campaign looks without searching for images. | A complete board is returned in under 60 seconds |
+| **Creative Director** | I want to review the AI's prompts before images are generated, so I keep creative control. | Prompts can be edited or approved before generation |
+| **Social Media Manager** | I want on-brand moodboards for trending styles, so my content stays current. | Boards follow the saved brand style settings |
+| **Social Media Manager** | I want to export the board and palette for post templates. | One-click export as PNG or PDF |
+| **Interior Designer** | I want a "concept feel" for client pitches without choosing products. | 4 distinct, relevant images per board |
+| **Interior Designer** | I want a color palette with hex codes to share with clients and contractors. | 4–6 hex codes shown, each copyable |
 
 ---
 
-## Milestones & Sequencing
+## 5. Functional Requirements
 
-### Project Estimate
-
-* **Medium (2 weeks)**
-
-### My Role: 
-
-  * Product Manager/Designer (user stories, flows, UI)
-  * Engineer (backend orchestration, API integration, frontend, Docker)
-
-### Suggested Phases
-
-**Phase 1 — Core Pipeline (Week 1–2)**
-
-* Key Deliverables:
-  * Gemini prompt parsing to FLUX image generation: engineer
-  * End-to-end workflow functional
-  * Simple Dockerized UI: engineer
-* Dependencies:
-  * Gemini and Hugging Face API credentials
-
-**Phase 2 — Polish & Color Extraction (Week 2)**
-
-* Key Deliverables:
-  * Color quantization and palette extraction: engineer
-  * Moodboard grid UI with palette strip: designer/engineer
-  * Export, retry logic, edge case handling: engineer
-* Dependencies:
-  * Stable pipeline from Phase 1
-
-**Phase 3 — Validation & Launch (Week 1-2)**
-
-* Key Deliverables:
-  * Test with internal stakeholders (creative team, social, design, etc.): PM
-  * Measure success metrics (SLA, approval rates)
-  * Bugfixes, performance tuning, <60s generation SLA: engineer
-* Dependencies:
-  * Completed features and internal feedback
+| ID | Requirement | Priority |
+|---|---|---|
+| **Prompting** | | |
+| FR-1 | Accept a style idea as text; if it's empty or unclear, suggest example ideas | P0 |
+| FR-2 | Gemini expands the idea into **4 visually distinct, detailed image prompts** | P0 |
+| FR-3 | **Clean each prompt** before sending it to the image model (remove line breaks, Markdown, and characters that break the API request) | P0 |
+| FR-4 | Show the prompts for review and editing before generation | P1 |
+| FR-5 | Apply saved **brand style settings** (colors, materials, tone) to every prompt | P1 |
+| **Images** | | |
+| FR-6 | Generate 4 images with FLUX **in parallel** and show them in a 2×2 grid | P0 |
+| FR-7 | If one image fails, keep the grid, show a placeholder with the error, and allow a retry of that slot | P1 |
+| FR-8 | Retry API calls up to 3 times with backoff before showing an error | P1 |
+| **Palette & export** | | |
+| FR-9 | Extract **4–6 main colors** from the images and show them as swatches with hex codes, each copyable | P1 |
+| FR-10 | Export the board and palette as one PNG or PDF | P1 |
+| FR-11 | Label exported boards **"AI-generated concept"** | P1 |
 
 ---
+
+## 6. Non-Functional Requirements
+
+| Area | Requirement |
+|---|---|
+| **Speed** | 95% of boards complete in under 60 seconds |
+| **Reliability** | 99% or more of API calls succeed or recover on retry |
+| **Privacy** | No user accounts and no stored history. Style ideas and prompts **are sent to Google (Gemini) and Hugging Face (FLUX)**, so users shouldn't enter confidential product plans until vendor data terms are approved |
+| **Security** | API keys stored as credentials, never in workflow files or the repo |
+| **Accessibility** | Hex codes readable at high contrast; keyboard navigation; images have alt text from their prompts |
+| **Devices** | Optimized for desktop and tablet |
+
+---
+
+## 7. User Experience
+
+```mermaid
+flowchart LR
+    A[Style idea<br/>'Modern Farmhouse'] --> B[Gemini: 4<br/>detailed prompts]
+    B --> C[Clean prompts]
+    C --> D{Review &<br/>edit?}
+    D --> E[FLUX: 4 images<br/>in parallel]
+    E --> F[2×2 board +<br/>hex palette]
+    F --> G[Export<br/>PNG / PDF]
+```
+
+1. **Enter an idea:** one large input field. A short first-time overlay explains the flow; no login is required.
+2. **Review prompts:** the four prompts appear next to the original idea; edit any of them or approve all.
+3. **Generate:** a progress indicator shows each image; retries are shown as they happen ("Retrying, hang tight").
+4. **View the board:** four images in a 2×2 grid, with a palette strip of hex codes underneath.
+5. **Export:** one click downloads the board and palette, with a confirmation message.
+
+### Edge cases
+| Situation | Behavior |
+|---|---|
+| Empty or unclear idea | Suggest examples and ask for more detail |
+| API rate limit or timeout | Retry up to 3 times, then show an error with next steps |
+| One image fails | Placeholder in that slot with the error and a retry button |
+
+---
+
+## 8. Narrative
+
+A Creative Director at a home goods brand is starting work on the autumn collection. She needs her team to agree on a look, something like "Warm Minimalist Autumn," that will guide marketing, styling, and product direction. Normally that means half a day of Pinterest searches, collecting images, and rounds of feedback over Slack and email.
+
+Today she types "Warm Minimalist Autumn" into the Moodboard AI Agent. Gemini suggests four prompts: cozy textures, muted foliage colors, sculptural modern furniture, and soft seasonal light. She tweaks one and approves. Four images appear as a moodboard, with a palette of hex codes underneath.
+
+In about a minute she exports the board and shares it with the team. Visual direction is set on day one, and the team spends its time on the creative work instead of the searching.
+
+---
+
+## 9. Success Metrics
+
+| Type | Metric | Target |
+|---|---|---|
+| **User** | Boards delivered in under 60 seconds | **≥ 95%** |
+| **User** | Stakeholders rating the board "on-point" | **≥ 90%** in post-session surveys |
+| **User** | Boards created and exported per user per week | Tracked |
+| **Business** | Median time to first visual in tracked projects | **Under 5 minutes** (from hours) |
+| **Business** | Active personas within 60 days | **3 of 3** |
+| **Technical** | API success rate, including retries | **> 99%** |
+| **Technical** | P95 time from idea to finished board | **< 60 seconds** |
+
+**Tracking plan:** ideas submitted · prompts edited vs. approved as-is · images generated and failed · retries · palette copies · exports.
+
+---
+
+## 10. Technical Considerations
+
+| Component | Approach |
+|---|---|
+| **Orchestration** | n8n workflow: chat trigger → AI Agent → code node → HTTP request |
+| **Prompting** | n8n AI Agent node with Google Gemini and a system message that sets the role ("expert image generation prompt engineer") and rules for style, color, texture, and layout |
+| **Prompt cleaning** | JavaScript code node that removes line breaks and Markdown and replaces double quotes, so the prompt fits in the API's JSON body |
+| **Image generation** | Hugging Face Inference API, **FLUX.1-schnell** (a fast model), returning PNG |
+| **Palette** | Color quantization on the generated images (v1) |
+| **Front end** | n8n chat for the MVP; a simple web UI for v1 |
+| **Reuse** | The same Gemini → clean → FLUX pattern generates trend imagery in Step 2 (Market Trend Discovery) |
+
+---
+
+## 11. Risks & Mitigations
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| AI output breaks the image API request (line breaks, quotes, Markdown) | **High (seen in MVP)** | High | Prompt-cleaning step (FR-3), now part of the design |
+| Images drift from brand guidelines | Medium | Medium | Brand style settings in every prompt (FR-5) and prompt review (FR-4) |
+| Generated images treated as real products or used publicly | Medium | High | "AI-generated concept" label on exports (FR-11) and internal-use non-goal |
+| Confidential plans sent to third-party AI services | Medium | High | Clear privacy guidance; approved vendor terms before wider rollout |
+| Rate limits on the free Hugging Face tier | Medium | Medium | Retries with backoff; paid or dedicated endpoint for production |
+
+---
+
+## 12. Open Questions
+
+1. Should brand style settings be one shared profile, or one per campaign or brand line?
+2. Is one composed collage image (the MVP approach) good enough for some uses, as a faster and cheaper "quick look" mode?
+3. What usage rights and disclosure rules apply to AI-generated images used in client presentations?
+
+---
+
+## 13. Milestones
+
+**Estimate:** ~2 weeks, built and owned end to end by Lashawn Fofung (product, design, and engineering).
+
+| Phase | Timing | Deliverables | Depends on |
+|---|---|---|---|
+| **1. Core pipeline** | Days 1–5 | Idea → Gemini prompt → cleaned prompt → FLUX image, working end to end | Gemini and Hugging Face API keys |
+| **2. Full board** | Days 6–10 | 4 parallel images, prompt review, palette extraction, retries, export | Stable Phase 1 pipeline |
+| **3. Validate & launch** | Days 11–14 | Testing with creative, social, and design users; speed tuning to under 60 seconds; bug fixes | All features complete |
+
+---
+
+## 14. MVP Delivered vs. v1 Spec
+
+*Based on the Lab 01 build and its sample run ("round jute rug, Scandinavian").*
+
+| Area | v1 spec | MVP as built |
+|---|---|---|
+| **Speed** | Under 60 seconds | ✅ **12.4 seconds** end to end; image step 3.3 seconds; 475 Gemini tokens |
+| **Prompting** | Gemini expands the idea | ✅ Gemini AI Agent with a role-based system message |
+| **Prompt cleaning** | — | ✅ Added during the build (now FR-3) |
+| **Images** | 4 images in a 2×2 grid | 🔄 Changed: **one 1024×1024 image** that FLUX composes as a moodboard collage (texture close-ups plus a styled room) |
+| **Input** | Web UI | 🔄 n8n chat interface |
+| **Prompt review** | Edit before generating | ❌ Not built |
+| **Hex palette and export** | 4–6 hex codes; PNG/PDF export | ❌ Not built |
+| **Retries** | Up to 3 with backoff | ❌ Not built |
+| **Scope** | Any home décor style | ⚠️ System prompt is tuned for **rugs**, matching the externship's focus category |
+
+**Lessons from the MVP**
+- **The model-to-model handoff is where things break.** Gemini's formatted output (line breaks, Markdown, quotes) broke the JSON request to Hugging Face. A small cleaning step fixed it, and that pattern was reused in later agents.
+- **Prove the pipeline before the polish.** One composed image proved the core idea (text to on-theme visual) in about 12 seconds. The 4-image grid, palette, and export are the next increment, and the speed result leaves plenty of room under the 60-second target.
+- **"Self-hosted" doesn't mean "private."** The original spec said all data stays inside the Docker environment, but prompts go to Google and Hugging Face. v1 states this plainly and adds privacy guidance.
+- **Keep keys out of the repo.** The published workflow files use token placeholders instead of real API keys.

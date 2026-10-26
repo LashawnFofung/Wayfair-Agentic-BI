@@ -1,86 +1,60 @@
-# Wayfair AI Agent Engineering for Business Intelligence
+<div align="center">
 
-<b>Status:</b> 🏗️ In-Progress 
+# Hi, I'm Lashawn 👋
+### Technical Product Manager · AI Products, Agentic Workflows & RAG
 
-This repository documents an 8-week technical externship focused on building autonomous AI agents to solve high-scale e-commerce challenges for Wayfair.
+**Great technology should feel effortless. I work where models meet products — turning AI capability into something people can actually use and trust.**
 
-----
+MBA, IT Management · BIS, Clinical Informatics · PMP · CSPO · CSM · Oracle OCI Generative AI Professional
 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lashawnfofung/)
+[![YouTube](https://img.shields.io/badge/YouTube-Demos-FF0000?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/@LashawnFofung)
 
-## 🎯 Project Milestones:
+</div>
 
-- <b>Project 1:</b> Moodboard Agent(The Creative Foundation) – Transforming style prompts into curated visual outputs. 
-  - [Lab 01 Moodboard Generator AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2001%3A%20Moodboard%20Generator%20AI%20Agent.md)
-  - [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Moodboard%20AI%20Agent.md)
+---
 
-- <b>Project 2:</b> Market Trend Discovery – Building agents to scrape and analyze product data and social media.
-  -  [Lab 02 Discovery AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2002%20Discovery%20AI%20Agent.md)
-  -  [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Market%20Trend%20Discovery%20AI%20Agent.md)
+### 🧭 Start Here
 
-- <b>Project 3:</b> Competitor Benchmarking (Monitoring Agent) – Tracking competitor launches and pricing to identify "whitespace" opportunities.
-  -  [Lab 03 Competitor Monitoring AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2003%20Competitor%20Monitoring%20AI%20Agent.md)
-  -  [Product Requirement Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Competitor%20Monitoring%20AI%20Agent.md)
+| Portfolio | What you'll find |
+|---|---|
+| 🎓 **[MBA & Product Portfolio](https://github.com/LashawnFofung/MBA-IT-Management-Portfolio)** | My full story as a PM: AI products, PRDs, UX research, strategy, and certifications |
+| 🤖 **[AI Portfolio](https://github.com/LashawnFofung/AI-Portfolio)** | Agentic systems, RAG pipelines, and the model benchmarks behind my decisions |
+| 📊 **[Data Analysis Portfolio](https://github.com/LashawnFofung/Data-Analysis-Portfolio)** | Business questions answered with SQL, Tableau, and Excel |
 
-- <b>Project 4:</b> AI Insight & Content Agent – Using Gemini to turn raw signals into marketing content and campaign ideas.
-  - [Lab 04: Content Strategy AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Content%20Strategy%20AI%20Agent.json)
-  - [Product Requirment Document](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Product%20Requirement%20Document%20(PRD)/PRD%20-%20Content%20Strategy%20AI%20Agent.md)
+---
 
+### ⭐ Featured Work
 
-- <b>Project 5:</b> Unified Market Intelligence Dashboard – Designing a live, auto-updating Google Sheets tool for supply chain managers.
-  - [DEMO: UI Prototype Walkthrough using Base44](https://youtu.be/7shTzdWxmfE)
-  - [Read about Prototype](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/Prototype/Market%20Intelligence%20Dashboard.md)
-  - [PRD Case Study DEMO](https://youtu.be/faxDVoOzObo) | [PRD Case Study Presentation PDF](https://github.com/LashawnFofung/Wayfair-Agentic-BI/blob/main/PRD%20CASE%20STUDY/Wayfair%20Agentic%20AI%20BI%20PRD%20Case%20Study.pdf)
+| Project | What it shows | Highlight |
+|---|---|---|
+| **[AI Document Automation Platform](https://github.com/LashawnFofung/AI-Powered-Document-Automation-Platform)** | Document AI MVP: splits multi-document PDFs, routes questions to the right document type, answers with page-level citations | 🏆 Top Performer Award (Top 10%) · [Live demo](https://huggingface.co/spaces/lfofung/AI-Powered-Document-Intelligence-Automation-Platform) |
+| **[Wayfair Agentic BI](https://github.com/LashawnFofung/Wayfair-Agentic-BI)** | Four PRDs, a dashboard prototype, and five working n8n agents ([build repo](https://github.com/LashawnFofung/Agentic-Workflow-Hub)) | [Prototype demo](https://youtu.be/7shTzdWxmfE) |
+| **[BeReal Passport & Community Boards](https://github.com/LashawnFofung/BeReal-RealProcess)** | UX + product case study: persona, journey map, 7-screen prototype, focus group | 4 of 5 testers would open the app more · [Try it](https://lashawnfofung.github.io/BeReal-RealProcess/) |
+| **[News Corp: AI for Gen Z Trust](https://github.com/LashawnFofung/Digital-Product-AI-Strategy)** | User research → AI feature strategy → KPIs | Quantified a 42% trust deficit |
+| **[Superstore Sales Performance](https://github.com/LashawnFofung/Superstore-Sales-Performance)** | SQL + Tableau profitability analysis, planned with a WBS | Found why $2.3M in sales yielded only a 12.47% profit ratio |
 
-  <br>
-  
-  - [Lab 05: Final AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2005%20Final%20AI%20Agent.md)
-  - Final Deliverables
-    - [EXTERNSHIP PROJECT DEMO](https://www.loom.com/share/1b0678d00d154691bb7c01cddcfaeb2a)
-    - [View JSON: Updated Market Trend AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Market%20Trend%20Discovery%20v2.json)
-    - [View JSON: Updated Competitor Monitoring AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Competitor%20Monitoring%20AI%20Agent%20v2.json)
-    - [View JSON: Dashboard Builder AI Agent](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Dashboard%20Builder%20Agent.json)
+---
 
-<br>
+### 🛠️ How I Work
 
-<b>View All Labs & Artifacts:</b> [Agentic Workflow Hub](https://github.com/LashawnFofung/Agentic-Workflow-Hub)
+- **Problem first.** Every project starts with a user and a business pain point, not a model.
+- **Build to understand.** I write the RAG pipelines myself, so I know where AI breaks and what to ask engineering.
+- **Decide with evidence.** I benchmark models, test prototypes with users, and bring data to the decision.
+- **Rigor from healthcare.** As a former Clinical Liaison, I learned that a small error reaches a real person.
 
-<br>
+---
 
+### 🧰 Toolkit
 
+**Product:** PRDs · Roadmapping · User research · Usability testing · Prototyping · Jira · Figma · Scrum
+**AI:** RAG · LlamaIndex · FAISS · Gemini API · Mistral · Phi-2 · n8n agentic workflows · Gradio
+**Data:** Python · SQL · Tableau · Power BI · Excel
 
-## 🛠️ Skills Gained
-- <b>AI Agent Development:</b> Building autonomous workflows using n8n.
+---
 
-- <b>Market Intelligence:</b> Scraping and analyzing competitor data for whitespace discovery.
+<div align="center">
 
-- <b>Prompt Engineering:</b> Designing high-fidelity prompts for Gemini to ensure brand-aligned outputs.
+**Open to Technical PM and AI PM roles** · 👉 [Let's connect on LinkedIn](https://www.linkedin.com/in/lashawnfofung/)
 
-- <b>Dashboard Design:</b> Visualizing real-time data pipelines for business stakeholders.
-
-- <b>Infrastructure & DevOps:</b> Deploying and managing Docker containers to maintain a consistent, isolated development environment for n8n.
-
-- <b>Orchestration:</b> Designing multi-agent systems and complex agentic workflows using n8n.
-
-- <b>LLM Implementation:</b> Advanced prompt engineering and model benchmarking with Gemini 2.0 and Mistral.
-
-- <b>Data Engineering:</b> Automated web scraping, attribute extraction, and structured data processing.
-
-- <b>Generative Media:</b> Integration of vision-language models (FLUX via Hugging Face) for automated asset creation.
-
-
-<br>
-
-
-## Key Technical Details
-
-- <b>Automation Engine/Orchestration:</b> n8n (Self-hosted via Docker)
-
-- <b>LLM:</b> Google Gemini (via Google AI Studio)
-
-- <b>Dashboard:</b> Google Sheets API
-
-- <b>Hardware Baseline/Environment:</b> Local execution (8GB RAM / Intel i3 or above) 
-
-- <b>Memory:</b> Logginh, Wait, and Merge/Code Nodes
-
-- <b>Infrastructure:</b> Docker (Containerized workflow management)
+</div>

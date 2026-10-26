@@ -1,176 +1,226 @@
-# PRD: AI Insights & Content Generation Agent
+# PRD: AI Insights & Content Agent
 
+| | |
+|---|---|
+| **Pipeline step** | 4 of 5 · Moodboard → Trend Discovery → Competitor Monitoring → **Insights & Content** → Dashboard |
+| **Owner** | Lashawn Fofung (Technical Product Manager and builder) |
+| **Status** | MVP built · v1 requirements below |
+| **Build** | [Lab 04 write-up](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2004%20AI%20Insight%20and%20Content%20Agent.md) · [Workflow](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Content%20Strategy%20AI%20Agent.json) · [Sample output](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Lab%20Artifacts/Lab%204/Wayfair_Area_Rug_Content_Strategy.html) |
 
+> *Externship project using Wayfair as the business case. Not affiliated with or endorsed by Wayfair.*
 
+[← Back to project overview](../README.md)
 
-## Summary
-The AI Insights & Content Generation Agent is an automated workflow engine that ingests qualitative market trends and competitive landscape data to dynamically generate brand-aligned, multi-channel marketing copy and structured design visual asset recommendations. As Step 4 of a five-part AI business intelligence pipeline (Moodboard → Trend Discovery → Competitor Monitoring → AI Insights → Dashboard), this agent translates raw, multi-source intelligence into high-converting marketing campaigns. Utilizing an automated n8n workflow orchestrated by Mistral AI, it replaces manual copywriting and creative brainstorming cycles, ensuring Wayfair rapidly capitalizes on market whitespace and shifting consumer demands.
+---
 
+## Contents
+1. [Summary](#1-summary)
+2. [Problem](#2-problem)
+3. [Goals & Non-Goals](#3-goals--non-goals)
+4. [Users & User Stories](#4-users--user-stories)
+5. [Functional Requirements](#5-functional-requirements)
+6. [Non-Functional Requirements](#6-non-functional-requirements)
+7. [User Experience](#7-user-experience)
+8. [Narrative](#8-narrative)
+9. [Success Metrics](#9-success-metrics)
+10. [Technical Considerations](#10-technical-considerations)
+11. [Risks & Mitigations](#11-risks--mitigations)
+12. [Open Questions](#12-open-questions)
+13. [Milestones](#13-milestones)
+14. [MVP Delivered vs. v1 Spec](#14-mvp-delivered-vs-v1-spec)
 
-## Goals
+---
 
-### Business Goals
-- <b>Accelerate Go-to-Market Copywriting:</b> Compress the campaign creative brief lifecycle from 5 business days down to minutes.
-- <b>Eliminate AI Jargon / Enforce Tone Integrity:</b> Ensure 100% adherence to Wayfair's distinct brand voice and specific style personas while filtering out repetitive "corporate fluff".
-- <b>Scale Multi-Channel Content Output:</b> Automate simultaneous generation of cross-channel collateral (Editorial strategies, Instagram captions, Email marketing headers) from a single analytical report upload.
-- <b>Fuel Graphic Design Pipelines:</b> Supply concrete, structured spatial, color, and tactile descriptions (mood_board_assets) to cross-functional visual layout engines.
+## 1. Summary
 
-<br>
+The AI Insights & Content Agent turns the trend report (Step 2) and competitor report (Step 3) into **brand-aligned marketing content**: an editorial strategy, social captions, email headers, and design direction (colors, textures, layout ideas). Content teams pick a style persona and keywords, and the agent drafts on-brand copy in minutes instead of days. **Every claim it makes must trace back to the source reports.**
 
-### User Goals
-- Content Strategists & Copywriters easily input trend parameters and immediately acquire high-converting, targeted copy options mapping to distinct aesthetic archetypes.
-- Creative Directors seamlessly change style aesthetics or tone restrictions without modifying underlying application code.
-- Marketing Managers quickly extract pre-formatted creative headlines and caption variations to execute rapid multi-variant social media test campaigns.
+---
 
-<br>
+## 2. Problem
 
-### Non-Goals
-- No automatic publishing of copy variants directly to live social channels or production CMS systems (recommendations and generation exports only).
-- No image rendering or asset generation within this iteration (v1 strictly delivers textual copy and structured hexadecimal styling schemas).
-- No intake processing of unstructured raw audio/video trend streams (input data must be clean, structured text or pre-extracted HTML files).
+| | |
+|---|---|
+| **Today** | Content strategists dig through trend and competitor reports by hand, then write copy for each channel separately |
+| **Time** | A campaign creative brief takes about **5 business days** |
+| **Quality** | Rushed copy falls back on generic phrases like "elevate your space," which weakens the brand |
 
-<br>
+**Problem statement:** Content teams can't turn market insights into on-brand, multi-channel content fast enough to act while a trend is still rising.
 
-## User Stories
+---
 
-### Content Strategist
-- As a Content Strategist, I want to upload Project 2 Trend Discovery and Project 3 Competitor reports so that the model extracts actionable data without manual copy-pasting.
-- As a Content Strategist, I want to specify a "Style Persona" (e.g., Earthy Organic, Minimalist, Maximalist) so that the generated copy aligns perfectly with specific micro-trends and design styles.
-- As a Content Strategist, I want an "Anti-AI-ism Filter" applied to all outputs so that I don't waste time editing out generic corporate fluff or cliche phrases like "elevate your space."
+## 3. Goals & Non-Goals
 
-<br>
+### Business goals
+| Goal | Target |
+|---|---|
+| Speed up content creation | Creative brief: ~5 days → **under 3 minutes** for a first draft |
+| Protect brand voice | **85%+** of drafts need no cleanup of generic or off-brand phrases |
+| Scale multi-channel output | One run produces editorial, Instagram, and email copy |
+| Feed design teams | Every run includes structured design direction: hex colors, textures, layout ideas |
+| **Keep content truthful** | **100%** of statistics in the output appear in the source reports |
 
-### Marketing Manager
-- As a Marketing Manager, I want a dedicated interactive component with one-click copy utilities for generated social media captions, headlines, and sub-headers so that I can rapidly spin up channel testing variables.
-- As a Marketing Manager, I want to dynamically update the execution or workflow readiness status of various copy components (To Do, Drafting, Ready) inside my dashboard view to track campaign preparation.
+### User goals
+- **Content Strategists** turn reports into targeted copy for a chosen style without copying and pasting.
+- **Creative Directors** change the style or tone rules without editing code.
+- **Marketing Managers** grab ready-to-use headlines and captions for quick A/B tests.
 
-<br>
+### Non-goals (v1)
+- **No automatic publishing** to social channels or the website. People review and post.
+- **No image generation.** v1 delivers text and design specs; the Moodboard agent handles images.
+- **No audio or video inputs.** Inputs are the structured reports from Steps 2 and 3.
 
-## Functional Requirements
-<b>1. Ingestion & File Extraction (Priority: High)</b>
-  - <b>HTML Stripping Engine:</b> Core workflow node must receive raw web or report uploads (Project 2 and Project 3 artifacts) and systematically purge markup tags, rendering clean plain text strings for downstream context ingestion.
-  - <b>Multi-Variable Form Interface:</b> The workflow entry interface must host dropdown controls for Style Persona profiles alongside an open text field for custom comma-separated Vibe Keywords.
+---
 
-<br>
+## 4. Users & User Stories
 
-<b>2. Orchestrated Prompt & Anti-AI Guardrails (Priority: High)</b>
-  - <b>Role-Based Execution:</b> Integrates mistral-large-latest via an overarching systemic prompt establishing the model as an expert, highly refined senior content strategist at Wayfair.
-  - <b>Enforced JSON Structuring:</b> The LLM prompt must contain strict formatting parameters requiring a non-negotiable JSON output schema including keys for editorial_strategy, instagram_caption, email_header, and a nested mood_board_assets array.
-  - <b>Lexicon Negative Restrictions (Anti-AI-ism Filter):</b> Outlaws specific phrases, forbidding terms such as "elevate your space", "sanctuary", "game changer", or "redefine your home".
+| User | Story | Acceptance criteria |
+|---|---|---|
+| **Content Strategist** | As a Content Strategist, I want to upload the trend and competitor reports, so the agent extracts insights without manual copying. | Both reports accepted; key facts extracted and listed with their source |
+| **Content Strategist** | I want to choose a style persona (e.g., Earthy Organic, Minimalist, Maximalist), so copy fits a specific aesthetic. | Output reflects the chosen persona; changing it changes the copy |
+| **Content Strategist** | I want generic phrases like "elevate your space" filtered out, so I spend less time editing. | Banned phrases never appear in the output |
+| **Content Strategist** | I want every statistic to cite its source report, so I can trust it in a campaign. | Each number links to the report and passage it came from |
+| **Marketing Manager** | I want one-click copy buttons for captions and headlines, so I can set up channel tests quickly. | Each copy block has a working copy button |
+| **Marketing Manager** | I want to mark each content piece as To Do, Drafting, or Ready, so I can track campaign prep. | Status changes are saved between visits |
 
-<br>
+---
 
-<b>3. Front-End Content Delivery Engine (Priority: Medium)</b>
-  - <b>Tabbed Interface Dashboard:</b> Converts standard layout blocks into a 3-tab front-end browser view structured across Strategy, Design, and Creative modules.
-  - <b>Status Tracking Widgets:</b> Uses local web storage variables to preserve user dropdown updates to workflow status states (To Do, Drafting, Ready).
-  - <b>Clipboard Interactivity:</b> Employs explicit JavaScript handlers to allow users to copy generated marketing text immediately upon clicking.
+## 5. Functional Requirements
 
-<br>
+| ID | Requirement | Priority |
+|---|---|---|
+| **Input** | | |
+| FR-1 | Accept the Step 2 and Step 3 reports (HTML) and convert them to clean text | P0 |
+| FR-2 | Input form with a Style Persona dropdown and a free-text Vibe Keywords field | P0 |
+| **Generation** | | |
+| FR-3 | Use a role-based prompt that sets the model up as a senior content strategist | P0 |
+| FR-4 | Return output in a strict JSON format with: `editorial_strategy`, `instagram_caption`, `email_header`, and `mood_board_assets` (hex colors, textures, layout ideas) | P0 |
+| FR-5 | **Anti-AI-ism filter:** block phrases such as "elevate your space," "sanctuary," "game changer," and "redefine your home"; the list is editable without code changes | P0 |
+| **Grounding & quality** | | |
+| FR-6 | **Use only facts from the source reports.** The prompt must forbid outside statistics, and every number must cite its source | P0 |
+| FR-7 | **Automated fact check:** before display, confirm every number in the output appears in the source reports; flag any that don't | P0 |
+| FR-8 | **Template check:** confirm all placeholders (e.g., category name) are filled before the report is delivered | P0 |
+| FR-9 | If the JSON is malformed, repair it or show the raw text safely, without breaking the page | P1 |
+| FR-10 | If design assets are missing, show default brand colors so the design section still renders | P1 |
+| **Output** | | |
+| FR-11 | Interactive report with three tabs: **Strategy · Design · Creative** | P1 |
+| FR-12 | Status tracker (To Do / Drafting / Ready) saved in the browser | P1 |
+| FR-13 | One-click copy for every caption and headline; print-ready layout for PDF | P1 |
 
-## User Experience
+---
 
-### Entry Point & First-Time User Experience
-  - Users navigate to the self-hosted n8n webhook link or configured browser web form.
-  - The interface displays simple fields to upload background HTML data reports, select targeted Style Personas, and inject custom contextual keywords.
+## 6. Non-Functional Requirements
 
-<br>
+| Area | Requirement |
+|---|---|
+| **Accuracy** | No invented statistics; every fact traceable to a source report (FR-6, FR-7) |
+| **Speed** | A full run finishes in under **3 minutes**; target under 90 seconds |
+| **Reliability** | 100% of runs produce valid JSON or a safe fallback; no broken pages |
+| **Privacy** | No personal data collected; status tracking stays in the user's browser |
+| **Accessibility** | Readable fonts, sufficient contrast, keyboard-usable copy buttons and tabs |
 
-### Core Experience Flow
+---
 
-[User Form Entry] ➔ [n8n Text Extraction] ➔ [Mistral LLM Execution] ➔ [JSON Schema Check] ➔ [Tabbed Dashboard Render]
+## 7. User Experience
 
-- <b>Step 1: Input Parameter Selections:</b> User loads source HTML trend files, picks a Persona (e.g., Maximalist), inputs a keyword like "velvet texture", and hits submit.
-- <b>Step 2: Workflow Extraction:</b> The n8n automation pipeline parses the input documents and strips out boilerplate report scripts or formatting wrappers.
-- <b>Step 3: Guardrail Enforcement:</b> The context string plus custom persona variables enter the Mistral model node under the constraints of the Anti-AI-ism filter.
-- <b>Step 4: Layout Materialization:</b> The JSON output passes down to an HTML template node that builds a responsive, stylized, multi-channel marketing dashboard.
-- <b>Step 5: Output Review & Asset Capture:</b> The user clicks through functional dashboard tabs, modifies status dropdowns, copies copy blocks to their clipboard, or outputs the layout as a PDF presentation report using native browser print styles.
+```mermaid
+flowchart LR
+    A[Upload reports +<br/>choose persona & keywords] --> B[Extract clean text]
+    B --> C[Mistral generates<br/>JSON content]
+    C --> D{Checks:<br/>banned phrases,<br/>facts, placeholders}
+    D -- pass --> E[3-tab report:<br/>Strategy · Design · Creative]
+    D -- fail --> F[Flag issues<br/>for review]
+```
 
+1. **Input:** the user uploads the trend and competitor reports, picks a persona (e.g., Maximalist), and adds keywords (e.g., "velvet texture").
+2. **Extract:** the workflow strips formatting and pulls the key facts.
+3. **Generate:** Mistral writes the content under the persona, banned-phrase, and grounding rules.
+4. **Check:** automated checks catch banned phrases, numbers not found in the sources, and unfilled placeholders.
+5. **Review:** the user moves through the Strategy, Design, and Creative tabs, updates statuses, copies text, and prints to PDF.
 
-<br>
+---
 
-## Advanced Features & Edge Cases
-- <b>JSON Validation Defect Handling:</b> If the LLM produces corrupted JSON notation, the workflow falls back to a structural parsing safeguard that auto-formats or safely captures unparsed text blocks to avoid complete layout collapse.
-- <b>Empty Visual Array Handling:</b> When the prompt fails to extract valid hex color schemes or physical texture tokens, the system injects default baseline Wayfair asset codes to keep visual cards readable.
+## 8. Narrative
 
-<br>
+**Before:** Elena, a Digital Content Planner, spends Thursday morning digging through trend and competitor reports to plan next week's campaign. Writing versions for each channel takes hours, and she keeps catching herself using the same tired phrases.
 
-## Narrative
-Elena, a Digital Content Planner at Wayfair, sits down on Thursday morning to structure next week's micro-campaign on trend-forward accent pieces. She has the text outputs from the Trend Discovery and Competitor Monitoring teams, but digging through the metric spreadsheets and HTML tables to find actionable visual cues takes her hours. Furthermore, drafting tailored variations across several channel formats often forces her into a repetitive loop of uninspired corporate copywriting.
+**After:** Elena uploads both reports, picks "Earthy Organic," and types "terracotta, handcrafted." Within about 90 seconds, she has a three-tab report. The Creative tab has an Instagram caption that sounds human, the Design tab shows a palette with hex codes ready for the design studio, and every statistic links back to the report it came from. She marks a caption Ready, copies it into her scheduler, and prints the report for her creative director.
 
+---
 
-Elena opens the AI Insights & Content Generation Agent dashboard. She uploads the raw report files, sets her target Style Persona dropdown to "Earthy Organic," and types "terracotta, handcrafted" into the custom vibe keyword block. She clicks generate.
+## 9. Success Metrics
 
+| Type | Metric | Baseline | Target |
+|---|---|---|---|
+| **User** | Time to draft multi-channel copy | Hours (≈5-day brief cycle) | **< 3 minutes** |
+| **User** | Copy-button use per report | — | Tracked |
+| **User** | Distinct personas used per month | — | **3+** |
+| **Quality** | Drafts needing no phrase cleanup | — | **> 85%** |
+| **Quality** | Statistics traceable to a source report | — | **100%** |
+| **Quality** | Reports with unfilled placeholders | — | **0** |
+| **Technical** | Runs producing valid JSON | — | **100%** (with fallback) |
+| **Technical** | Runs including complete design assets | — | Tracked |
 
-Behind the scenes, the n8n pipeline processes her parameters, cleans the report markup, and sends the prompt payload to Mistral. Mistral, operating under a strict anti-cliche filter, ignores standard boilerplate expressions and designs a curated strategy card.
+---
 
+## 10. Technical Considerations
 
-Within ninety seconds, Elena's screen refreshes into a dashboard. Under the Creative tab, she discovers an Instagram copy option that reads cleanly and avoids generic corporate buzzwords. Under the Design tab, a dedicated layout displays an asset palette complete with specific interior styling directions and hex color swatches ready to send to the design studio. Elena switches a card's status flag from To Do to Ready, clicks a button to copy the caption, pastes it directly into her scheduling queue, and prints the layout as a polished PDF report for her creative director's afternoon sync.
+| Component | Approach |
+|---|---|
+| **Orchestration** | n8n workflow with an upload form trigger |
+| **Model** | Mistral (`mistral-large-latest`) |
+| **Prompting** | Role-based system prompt, strict JSON schema, banned-phrase list, and a "use only the provided reports" rule |
+| **Validation** | Code steps that check phrases, numbers, and placeholders before rendering |
+| **Front end** | HTML, CSS, and JavaScript generated from the JSON; browser storage for status tracking |
+| **Integrations** | **Upstream:** Step 2 (trends) and Step 3 (competitors) reports · **Downstream:** content and palette data for the Step 5 dashboard |
 
-<br>
+---
 
-## Success Metrics
+## 11. Risks & Mitigations
 
-### User-Centric Metrics
-- <b>Content Assembly Speed:</b> Reduce time spent drafting channel copy variations from hours to under 3 minutes per campaign.
-- <b>UX Copy and Paste Engagement:</b> Rate of user clicks on the dynamic dashboard copy-to-clipboard elements.
-- <b>Content Persona Variety:</b> Multi-persona execution frequency across team analysts (target: regular utilization of at least 3 distinct style profiles monthly).
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| **AI invents statistics** | **High (seen in MVP)** | **High** | "Source-only" prompt rule, required citations, and an automated number check (FR-6, FR-7) |
+| **Template placeholders left unfilled** | **High (seen in MVP)** | Medium | Validate all fields before rendering (FR-8) |
+| Malformed JSON | Medium | Medium | Repair step with safe fallback (FR-9) |
+| Generic or off-brand tone | Medium | Medium | Banned-phrase filter plus persona rules; track the cleanup rate |
+| Thin source reports produce thin content | Medium | Medium | Show how much source data each insight is based on |
 
-<br>
+---
 
-### Business & Workflow Metrics
-- <b>AI Output Quality Acceptance Rate:</b> Percentage of generated marketing copy requiring zero additional manual text removal post-generation (target: >85%).
-- <b>Structured Visual Integration:</b> Number of generation outputs successfully outputting accurate mood_board_assets blocks.
-- <b>Schema Integrity Validation Rate:</b> Rate of automated text passes converting into valid JSON objects without downstream failure (target: 100%).
+## 12. Open Questions
 
-<br>
+1. Who owns the banned-phrase list, and how often should it be reviewed?
+2. Should flagged (unverified) numbers be removed automatically or shown for human review?
+3. What brand-voice guidelines should the persona definitions draw from?
 
-## Technical Considerations
+---
 
-### Technical Needs
-- <b>AI Orchestration Framework:</b> n8n workflow software configured with active HTTP webhooks and functional data injection properties.
-- <b>LLM API Endpoints:</b> Stable access to the Mistral AI API platform utilizing the mistral-large-latest inference model.
-- <b>Web UI Formatting Infrastructure:</b> Core knowledge of semantic HTML5 layouts, embedded responsive CSS styles, and structural JavaScript code blocks.
+## 13. Milestones
 
-<br>
+**Estimate:** ~1 week, built end to end by Lashawn Fofung (engineering, prompting, and front end). The base workflow was inherited and extended.
 
-### Integration Points
-- <b>Upstream Handoff:</b> Ingests structural text components, volume indicators, and pricing opportunities outputted by Step 3 (Competitor Monitoring).
-- <b>Downstream Integration:</b> Supplies clean HTML data structures and color palette definitions to enrich the Step 5 consolidated Market Intelligence Dashboard interface.
+| Phase | Timing | Deliverables | Depends on |
+|---|---|---|---|
+| **1. Inputs & prompting** | Days 1–2 | Report upload and text extraction; persona, keywords, and banned-phrase rules | Mistral API key |
+| **2. Interface** | Days 3–4 | Three-tab report, status tracker, copy buttons, print layout | Valid JSON from Phase 1 |
+| **3. Validation & hardening** | Days 5–7 | Fact and placeholder checks, JSON repair, stress tests, documentation | Step 5 data format agreed |
 
-<br>
+---
 
-### Storage, Performance & Privacy
-- <b>Transient Session Architecture:</b> Generated campaign data is mapped instantly to the client's localized view engine; persistent user telemetry isn't collected, ensuring complete internal corporate security.
-- <b>Browser Data Lifecycle:</b> Interface state tracking markers (To Do / Drafting) rely exclusively on the client web browser's local storage environment, bypassing backend database complexity.
-- <b>Execution Latency Requirements:</b> Complete analytical parsing and layout delivery operations must finish within a maximum system runtime limit of 15 seconds per call.
+## 14. MVP Delivered vs. v1 Spec
 
+| Area | v1 spec | MVP as built |
+|---|---|---|
+| **Inputs** | Upload Step 2 and Step 3 reports | ✅ Report upload and text extraction |
+| **Persona and keywords** | Dropdown and free text | ✅ Added to the inherited form |
+| **Anti-AI-ism filter** | Banned phrases blocked | ✅ None of the banned phrases appear in the sample output |
+| **Structured output** | JSON with design assets | ✅ Strategy, content ideas, and campaigns generated |
+| **Three-tab app, status tracker, copy buttons** | Interactive report | ✅ Built (per the Lab 04 write-up); the sample file in the repo is the earlier static version |
+| **Grounding in source reports** | Every number traceable | ❌ **Failed in the sample:** statistics such as "28% YoY growth," "47% sustainability searches," "62% mobile traffic," and an IKEA comparison don't appear in the source reports |
+| **Placeholders filled** | No unfilled fields | ❌ **Failed in the sample:** `{{ $json.category }}` and `{{ $json.focus }}` appear 51 times |
 
-## Milestones & Sequencing
-
-### Project Estimate
-- <b>Duration:</b> 1 Week (Optimized, focused sprint framework).
-
-<br>
-
-### Team Allocation
-- <b>Lead AI Engineer:</b> Builds n8n workflows, optimizes system logic prompts, and implements JSON structuring filters.
-- <b>Front-End UX Developer:</b> Creates response dashboards, integrates functional interactive widgets, and structures print styling behaviors.
-
-<br>
-
-### Suggested Phases
-### Phase 1: Ingestion Architecture & Prompt Conditioning
-- <b>Key Deliverables:</b> Establish working n8n file ingestion nodes. Configure the Mistral prompt block with the persona rules engine and anti-cliche filters.
-- <b>Dependencies:</b> Configured and active Mistral AI API keys.
-
-<br>
-
-### Phase 2: Interface Integration & Functional Testing
-- <b>Key Deliverables:</b> Embed JSON responses directly into tabbed HTML dashboards. Integrate clipboard copy buttons and localized status dropdown triggers.
-- <b>Dependencies:</b> Clean, error-free JSON outputs generated by Phase 1 workflow models.
-
-<br>
-
-### Phase 3: Validation, Hardening & Pipeline Deployment
-- <b>Key Deliverables:</b> Run multi-variant stress tests against corrupt JSON arrays. Validate dashboard scaling and layout structure on cross-functional devices. Complete all system deployment documentation.
-- <b>Dependencies:</b> Step 5 team alignment on upstream schema expectations.
+**Lessons from the MVP**
+- **Fluent isn't the same as true.** The sample report reads well and labels its numbers as "from your Project 2 and Project 3 reports," but those numbers aren't in either report. For an AI content tool, grounding is a P0 requirement, not a nice-to-have, so FR-6 and FR-7 were added.
+- **Test the output, not just the workflow.** The workflow ran successfully but delivered unfilled placeholders. Automated output checks (FR-8) catch what a "successful run" hides.
+- **The tone filter worked.** The banned-phrase rules held, showing that prompt constraints can reliably shape style, while factual accuracy needs a separate check.

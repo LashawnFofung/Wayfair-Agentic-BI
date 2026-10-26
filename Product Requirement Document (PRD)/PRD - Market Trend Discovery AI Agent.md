@@ -1,237 +1,238 @@
 # PRD: Market Trend Discovery AI Agent
 
-### Summary
+| | |
+|---|---|
+| **Pipeline step** | 2 of 5 · Moodboard → **Trend Discovery** → Competitor Monitoring → Insights & Content → Dashboard |
+| **Owner** | Lashawn Fofung (Technical Product Manager and builder) |
+| **Status** | MVP built · v1 requirements below |
+| **Build** | [Lab 02 write-up](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Labs/Lab%2002%20Discovery%20AI%20Agent.md) · [Workflow (v2)](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/N8N%20Workflow/Final%20Deliverables/Market%20Trend%20Discovery%20v2.json) · [Sample report: Shag Rugs](https://github.com/LashawnFofung/Agentic-Workflow-Hub/blob/main/Lab%20Artifacts/Lab%202/Shag%20Rug%20Trend%20Report.pdf) |
 
-An autonomous trend-scraping AI agent that continuously monitors platforms like Pinterest, top design blogs, and retailers to identify the next "Hero" products for the home decor industry. The agent assigns Trend Confidence Scores using multi-source social signals, surfaces niche versus saturated trends, and provides actionable insights through automated PDF reports and a dynamic, live Google Sheets dashboard designed for internal team use. Target users include Inventory Planners, Trend Researchers, and SEO Specialists who rely on actionable early trend detection.
+> *Externship project using Wayfair as the business case. Not affiliated with or endorsed by Wayfair.*
 
----
-
-## Goals
-
-### Business Goals
-
-* Achieve an 80% reduction in manual trend and product research time for key teams.
-* Realize 95% signal relevance, confirmed via internal audit of surfaced trends.
-* Accelerate identification of "Hero" products before the broader market recognizes the trend.
-* Improve inventory planning accuracy, reducing overstock and increasing timely stock of trending styles.
-
-### User Goals
-
-* Enable Inventory Planners to confidently stock trending materials (e.g., "washable," "terracotta") before they peak.
-* Empower Trend Researchers to discover and categorize emerging niche styles early.
-* Allow SEO Specialists to quickly surface and leverage trending keywords tied to product descriptions.
-
-### Non-Goals
-
-* Direct competitor price matching and pricing analysis (already handled by Agent 3).
-* Building consumer-facing search or visualization features.
-* Real-time product pricing data integration.
+[← Back to project overview](../README.md)
 
 ---
 
-## User Stories
-
-**Inventory Planner**
-
-* As an Inventory Planner, I want to see a confidence score for specific material types (e.g., "Terracotta Rugs"), so that I can make bulk stocking recommendations with certainty.
-* As an Inventory Planner, I want trend recommendations by product category, so that stocking decisions remain segmented and relevant to each line.
-
-**Trend Researcher**
-
-* As a Trend Researcher, I want to identify niche styles before they become mainstream, so that I can keep our catalog ahead of the market.
-* As a Trend Researcher, I want to see each trend labeled as “Niche” or “Saturated”, so that I focus research effort where it matters most.
-
-**SEO Specialist**
-
-* As an SEO Specialist, I want to see trending keywords extracted from top-performing trend signals, so that I can update product descriptions accordingly.
-* As an SEO Specialist, I want to view a “momentum” indicator for keywords, so that I prioritize SEO updates based on emerging trends.
-
----
-
-## Functional Requirements
-
-* **Data Ingestion (Priority: P0)**
-
-  * Multi-source ingestion engine, pulling trend and product signals from Pinterest, design blogs, and retailer listings via Extern API.
-  * Data siloed by category (e.g., Rugs, Lighting, Decor) to prevent trend cross-contamination and maintain analytics purity.
-
-* **AI Analysis (Priority: P0)**
-
-  * Categorization using Gemini 1.5 Flash—automated Niche vs. Saturated trend classification per signal.
-  * Trend Confidence Score calculation, requiring aggregation from at least three distinct data sources per trend.
-
-* **Reporting (Priority: P1)**
-
-  * Automated PDF Trend Report generation, scheduled (weekly/monthly) and available on-demand.
-  * PDF to include summary statistics, top trends by category, confidence scores, and niche/saturated breakdowns.
-
-* **Dashboard (Priority: P1)**
-
-  * Internal Google Sheets dashboard, auto-updating via API, reflecting the most recent dataset and insights.
-  * Dashboard to feature: confidence scores, niche/saturated trend labeling, trending keywords for SEO, and clear segmentation by product category.
+## Contents
+1. [Summary](#1-summary)
+2. [Problem](#2-problem)
+3. [Goals & Non-Goals](#3-goals--non-goals)
+4. [Users & User Stories](#4-users--user-stories)
+5. [Functional Requirements](#5-functional-requirements)
+6. [Non-Functional Requirements](#6-non-functional-requirements)
+7. [User Experience](#7-user-experience)
+8. [Narrative](#8-narrative)
+9. [Success Metrics](#9-success-metrics)
+10. [Technical Considerations](#10-technical-considerations)
+11. [Risks & Mitigations](#11-risks--mitigations)
+12. [Open Questions](#12-open-questions)
+13. [Milestones](#13-milestones)
+14. [MVP Delivered vs. v1 Spec](#14-mvp-delivered-vs-v1-spec)
 
 ---
 
-## User Experience
+## 1. Summary
 
-**Entry Point & First-Time User Experience**
-
-* Users access the internal Google Sheets dashboard via shared company workspace (G Suite link).
-* First-time users are greeted with an “About” tab explaining data sources, updating cadence, and how to use category filters.
-* Brief tooltip-style onboarding highlights navigation, how to drill into product categories, and how to request on-demand PDF reports.
-
-**Core Experience**
-
-* **Step 1:** User opens the live dashboard and lands on the “Summary” tab, displaying top-trending products across all categories with associated confidence scores and niche/saturated labels.
-
-  * Minimal friction via automatic login with company credentials.
-  * Success: Users see the current snapshot without manual refresh; last updated timestamp is clearly presented.
-
-* **Step 2:** User filters dashboard view by category (e.g., Rugs, Lighting) using a dropdown selector; all data instantly segments with no cross-category signal bleed.
-
-  * Data validation prevents users from selecting irrelevant combinations.
-  * Frozen column and header rows ensure consistent visibility of key context.
-
-* **Step 3:** User clicks into a specific trend (e.g., “Terracotta Rugs”) to view:
-
-  * Source breakdown (Pinterest, Blog, Retail).
-  * Trend Confidence Score derivation, showing each source’s relative weight and any gaps.
-  * Associated trending keywords with momentum indicators.
-  * Historical movement over time.
-
-* **Step 4:** User has two options for reporting:
-
-  * Trigger on-demand PDF Trend Report (sent via email or downloadable link).
-  * Passively receive automated weekly/monthly reports summarizing top changes and actionable insights.
-
-**Advanced Features & Edge Cases**
-
-* Manual override: Users can flag a trend as “Watch” (monitor more closely) or “Dismiss” (deprioritize).
-* Handling of insufficient data: If fewer than 3 platform signals are available, dashboard surfaces a data sufficiency warning and disables confidence scoring for that trend.
-* Stale data handling: If any category or overall dataset has not refreshed within set SLA (<5 minutes), a prominent warning is displayed.
-
-**UI/UX Highlights**
-
-* Color-coded confidence score tiers (High: green, Medium: yellow, Low: red).
-* Frozen header rows for persistent access to field names and last-updated status.
-* Dropdown selectors for fast filtering by category or trend status.
-* Mobile-friendly view for on-the-go management.
-* Accessibility: Sufficient color contrast, readable fonts, keyboard navigation, and screen reader support.
+The Market Trend Discovery AI Agent watches Pinterest, design blogs, social media, and retailer listings to spot the next **"hero" products** in home décor before they show up in sales data. It gives each trend a **Trend Confidence Score** based on how many independent sources support it, labels it **Niche** or **Saturated**, and delivers the results in a scheduled report and a live dashboard for Inventory Planners, Trend Researchers, and SEO Specialists.
 
 ---
 
-## Narrative
+## 2. Problem
 
-Trend Researcher Jamie wrestles daily with the explosion of product styles across Pinterest boards and endless design blogs. Tracking the next big thing—like whether “Terracotta Rugs” is another fleeting fad or a coming mainstay—requires hours of sifting, cross-comparison, and highly manual note-taking. Meanwhile, Inventory Planner Lee anxiously waits for a clear signal that it’s finally safe to recommend washable terracotta material for next quarter’s bulk order, while Sam in SEO itches for real data to power compelling product copy.
+| | |
+|---|---|
+| **Today** | Teams rely on sales data and manual research across Pinterest, blogs, and retailers |
+| **Lag** | Sales data shows a trend **4–6 weeks** after it starts, or longer |
+| **Cost** | Trending styles are under-stocked, fading ones are over-stocked, and researchers spend hours sifting noisy sources |
 
-Enter the Market Trend Discovery AI Agent: Jamie launches the internal Google Sheets dashboard and is greeted by a refreshed, color-coded landscape of products—trends parsed, scored, and explained. “Terracotta Rugs” surfaces with a High Confidence score, categorized as “Niche” across Pinterest, recent blogs, and select retailer sources—each weighted and timestamped for transparency. With one click, Jamie reviews momentum keywords and flags the trend as “Watch” for follow-up.
-
-Lee quickly pivots, confident enough to add terracotta material to the inventory slate early—beating slower competitors. Sam, the SEO Specialist, grabs the surge in “washable terracotta” as a keyword, updating site copy for the season’s best chances. What once involved days of scattered research and gut instinct now happens in minutes. The business rides the crest of the trend wave, capturing early demand, minimizing overstock, and learning—week by week—where to double down next.
-
----
-
-## Success Metrics
-
-### User-Centric Metrics
-
-* 80% reduction in time spent on manual trend research, measured via pre/post internal time tracking.
-* Internal team user satisfaction score ≥ 4/5 (quarterly pulse survey after product launch).
-* Frequency of on-demand report requests and dashboard filter use.
-
-### Business Metrics
-
-* Percentage of “Hero” products identified via the tool before external market peak.
-* Inventory accuracy improvement year-over-year in categories supported by the tool.
-* Reduction in overstock/outdated inventory for products flagged as “Saturated.”
-
-### Technical Metrics
-
-* 95% of surfaced trend signals demonstrated relevant context in spot-audit reviews.
-* Dashboard refresh latency consistently below 5 minutes after data ingestion.
-* 100% successful PDF report generation (monitored via delivery and error logs).
-
-### Tracking Plan
-
-* Number of dashboard opens per user and across team.
-* Frequency of filter use by category/trend type.
-* Volume and accuracy rate of on-demand PDF reports.
-* User engagement with confidence scores (“views per trend”).
-* Manual override/flag actions logged and reviewed for QA.
+**Problem statement:** By the time a trend appears in sales data, the best time to stock it has passed, and manual research is too slow and too noisy to close the gap.
 
 ---
 
-## Technical Considerations
+## 3. Goals & Non-Goals
 
-### Technical Needs
+### Business goals
+| Goal | Target |
+|---|---|
+| Cut manual trend research time | **−80%**, measured with before/after time tracking |
+| Spot trends earlier | Identify hero products about **3 weeks** before competitors |
+| Keep signals relevant | **95%** of surfaced trends judged relevant in spot audits |
+| Improve inventory decisions | Less overstock of "Saturated" styles; earlier stock of rising ones |
 
-* Extern API: Multi-source trend and product signal ingestion from Pinterest, blogs, and retailer feeds.
-* Gemini 1.5 Flash: Automated analysis for Niche vs. Saturated, confidence scoring, and keyword extraction.
-* Google Sheets API: For real-time, live data dashboard population and updating.
-* PDF Generation Service: Automated creation and email delivery/storage of Trend Reports.
-* Scheduled job runner: Ensures timely report creation and data refreshing.
+### User goals
+- **Inventory Planners** stock trending materials and colors (e.g., "washable," "terracotta") before they peak, backed by a confidence score.
+- **Trend Researchers** find niche styles early and see which are already saturated.
+- **SEO Specialists** get trending keywords and their momentum to update product copy.
 
-### Integration Points
-
-* Extern API for primary data ingestion.
-* Google Sheets API for dashboard output.
-* Gemini 1.5 Flash for in-line trend analysis and scoring.
-* PDF rendering engine for reporting.
-* Email or Cloud Storage system for distributing PDF reports.
-
-### Data Storage & Privacy
-
-* Trend data isolated in silos per product category to guarantee analytical integrity.
-* No cross-category data sharing (e.g., Rug trends cannot pollute Lighting analytics).
-* All datasets restricted to internal team access through Google Workspace.
-* Data retention policy set for periodic deletion—stale signals purged quarterly.
-
-### Scalability & Performance
-
-* Dashboard designed to auto-update within 5 minutes of new data signal ingestion.
-* System must handle addition of product categories and new data feeds with no notable performance drop.
-* Supports up to dozens of concurrent team users for dashboard/reporting access.
-
-### Potential Challenges
-
-* Signal noise from low-quality or irrelevant sources could dilute confidence accuracy; requires automated and manual QA controls.
-* Maintaining the purity of data silos as new product categories roll out over time.
-* Gemini API rate limits or outages could impact daily analysis (risk management needed for bulk operations).
+### Non-goals (v1)
+- **No competitor price matching.** That's Step 3 (Competitor Monitoring).
+- **No customer-facing features.** Internal use only.
+- **No real-time pricing data.**
 
 ---
 
-## Milestones & Sequencing
+## 4. Users & User Stories
 
-### Project Estimate
-
-* Total: Large (2 weeks).
-
-### Team 
-
-* My Role
-  * PM/TPM 
-  * Engineer: backend (API/AI integration), dashboard/front-end (Google Sheets, PDF report integration)
-  * Designer/Analyst (for report template polishing and narrative QA)
-
-### Suggested Phases
-
-**Phase 1: Data Ingestion & Category Silos (Weeks 1–2)**
-
-* Key Deliverables: Backend engineer—data pipeline via Extern API, initial category siloing, Gemini 1.5 Flash integration for basic trend categorization.
-* Dependencies: Extern API access; basic design guide for dashboard fields.
-
-**Phase 2: Core Scoring Engine & Dashboard v1 (Weeks 1-2)**
-
-* Key Deliverables: Backend + front-end engineers—trend confidence calculation logic (min 3 sources per signal), preliminary live Google Sheets dashboard, working category filters, Niche/Saturated labeling.
-* Dependencies: Phase 1 ingestion completion.
-
-**Phase 3: Reporting & Dashboard Refinement (Weeks 2)**
-
-* Key Deliverables: Engineer + part-time designer—working PDF report generator (scheduled/on-demand), dashboard UI polish, keyword trending module for SEO.
-* Dependencies: Scoring and dashboard live (Phase 2).
-
-**Phase 4: QA, Testing, Rollout (Weeks 2)**
-
-* Key Deliverables: All—signal relevance QA (target 95% audit hit rate), end-to-end dashboard/PDF tests, onboarding guides, internal launch.
-* Dependencies: Completion of all product features and systems operational.
+| User | Story | Acceptance criteria |
+|---|---|---|
+| **Inventory Planner** | As an Inventory Planner, I want a confidence score for materials like "terracotta rugs," so I can recommend stock increases with confidence. | Each trend shows a score and the sources behind it |
+| **Inventory Planner** | I want trends broken out by product category, so decisions stay relevant to each line. | Results filter by category with no mixing between categories |
+| **Trend Researcher** | I want to find niche styles before they go mainstream, so our catalog stays ahead. | Trends are labeled Niche or Saturated |
+| **Trend Researcher** | I want to see why a trend is labeled Niche or Saturated, so I can focus my research. | Each label shows the evidence behind it |
+| **SEO Specialist** | I want trending keywords from top trend signals, so I can update product descriptions. | Keywords listed for each trend |
+| **SEO Specialist** | I want a momentum indicator for each keyword, so I can prioritize updates. | Keywords marked rising, steady, or falling |
 
 ---
+
+## 5. Functional Requirements
+
+| ID | Requirement | Priority |
+|---|---|---|
+| **Data collection** | | |
+| FR-1 | Collect trend and product signals from **Pinterest, design blogs, social media, and retailer listings**, using approved APIs or data providers | P0 |
+| FR-2 | Keep data separated by category (e.g., Rugs, Lighting) so one category's trends never mix with another's | P0 |
+| FR-3 | **Report how much data each source returned** on every run, including zero | P0 |
+| **Analysis** | | |
+| FR-4 | Classify each trend as **Niche** or **Saturated**, with the reason | P0 |
+| FR-5 | Calculate a **Trend Confidence Score** from at least **three independent sources** per trend | P0 |
+| FR-6 | **Minimum-evidence rule:** if fewer than three sources support a trend, show "insufficient data" instead of a score. If the whole run has too little data, label the report "low confidence" rather than presenting firm findings | P0 |
+| FR-7 | Separate **findings from collected data** from **AI background knowledge** (e.g., market size estimates), and label which is which | P0 |
+| FR-8 | Extract trending keywords with a momentum indicator | P1 |
+| **Output** | | |
+| FR-9 | Generate a trend report (HTML/PDF) on a schedule (weekly or monthly) and on demand | P1 |
+| FR-10 | Feed a live dashboard showing scores, labels, keywords, and category filters | P1 |
+| FR-11 | Let users mark a trend **Watch** or **Dismiss**, and log those choices | P2 |
+
+---
+
+## 6. Non-Functional Requirements
+
+| Area | Requirement |
+|---|---|
+| **Accuracy** | Every trend claim cites its supporting sources; no claims about "sales leaders" without sales data |
+| **Freshness** | Dashboard updates within 5 minutes of new data; stale data shows a warning |
+| **Reliability** | 100% of scheduled reports generated, or a clear failure alert |
+| **Scalability** | New categories and sources added without slowing the pipeline; supports dozens of concurrent internal users |
+| **Privacy** | Internal access only; stale signals purged quarterly |
+| **Accessibility** | Score tiers shown with labels, not color alone; keyboard navigation and screen reader support |
+
+---
+
+## 7. User Experience
+
+```mermaid
+flowchart LR
+    A[Pinterest · Blogs ·<br/>Social · Retailers] --> B[Collect & count<br/>signals per source]
+    B --> C{3+ sources<br/>per trend?}
+    C -- yes --> D[Score, label<br/>Niche / Saturated,<br/>extract keywords]
+    C -- no --> E[Mark<br/>'insufficient data']
+    D --> F[Report + dashboard]
+    E --> F
+```
+
+1. **Land on the summary:** top trends across categories, each with a confidence score, Niche/Saturated label, and last-updated time.
+2. **Filter by category:** choose Rugs, Lighting, and so on; data never mixes across categories.
+3. **Drill into a trend** (e.g., "Terracotta Rugs"): see the source breakdown (Pinterest, blogs, retail), how the score was built, related keywords with momentum, and history over time.
+4. **Get reports:** request a PDF on demand, or receive scheduled weekly or monthly reports.
+
+### Edge cases
+| Situation | Behavior |
+|---|---|
+| Fewer than 3 sources for a trend | Show "insufficient data"; no score |
+| A source returns no data | Report "0 results" for that source, and lower the report's overall confidence |
+| Data older than the refresh window | Show a stale-data warning |
+
+---
+
+## 8. Narrative
+
+**Before:** Jamie, a Trend Researcher, spends hours each day scrolling Pinterest boards and design blogs, trying to tell whether "terracotta rugs" is a passing fad or the next big thing. Lee, an Inventory Planner, needs a clear signal before adding terracotta to next quarter's order, and Sam in SEO wants data to guide product copy.
+
+**After:** Jamie opens the dashboard and sees "Terracotta Rugs" with a **High** confidence score, labeled **Niche**, supported by Pinterest, recent blogs, and retailer listings, each with a timestamp. Lee adds terracotta to the order early, ahead of slower competitors. Sam spots "washable terracotta" rising as a keyword and updates product descriptions that afternoon.
+
+---
+
+## 9. Success Metrics
+
+| Type | Metric | Target |
+|---|---|---|
+| **User** | Time spent on manual trend research | **−80%** (before/after time tracking) |
+| **User** | User satisfaction | **≥ 4/5** in a quarterly survey |
+| **User** | Report requests and dashboard filter use | Tracked |
+| **Business** | Hero products identified before the market peak | Tracked per quarter |
+| **Business** | Overstock of products flagged "Saturated" | Reduced year over year |
+| **Quality** | Trends relevant in spot audits | **95%** |
+| **Quality** | Trends shown with a score that have 3+ supporting sources | **100%** |
+| **Technical** | Dashboard refresh after new data | **< 5 minutes** |
+| **Technical** | Scheduled reports generated | **100%** |
+
+**Tracking plan:** dashboard opens per user · filter use by category · on-demand report requests · score views per trend · Watch/Dismiss actions · **results returned per source per run**.
+
+---
+
+## 10. Technical Considerations
+
+| Component | Approach |
+|---|---|
+| **Orchestration** | n8n on a schedule |
+| **Data collection** | Social and blog signals via a third-party data API; retailer listings via HTTP and HTML parsing (approved sources preferred for production) |
+| **AI** | **Mistral** cleans and classifies product data; **Gemini** synthesizes insights and writes the report |
+| **Images** | Hugging Face FLUX for trend imagery |
+| **Output** | HTML/PDF report saved to dated Google Drive folders; data feeds the Step 5 dashboard |
+| **Integrations** | **Downstream:** priority products for Step 3 (Competitor Monitoring); trends for Step 4 (Content) and Step 5 (Dashboard) |
+
+---
+
+## 11. Risks & Mitigations
+
+| Risk | Likelihood | Impact | Mitigation |
+|---|---|---|---|
+| **A data source returns nothing, and the AI fills the gap with general knowledge** | **High (seen in MVP)** | **High** | Report results per source (FR-3), minimum-evidence rule (FR-6), and labeling of AI background knowledge (FR-7) |
+| Noisy or low-quality sources dilute scores | Medium | Medium | Source quality filters plus manual spot audits |
+| Category data mixes as new categories are added | Low | Medium | Separate storage and checks per category |
+| API limits or outages | Medium | Medium | Retries and alerts; partial reports clearly labeled |
+| Terms-of-service limits on collecting data | Medium | High | Approved APIs and licensed data providers |
+
+---
+
+## 12. Open Questions
+
+1. How should sources be weighted in the confidence score (e.g., is a Pinterest save worth less than a blog feature)?
+2. What's the cutoff between Niche and Saturated: share of listings, growth rate, or both?
+3. Which data provider gives reliable access to Pinterest and Instagram signals?
+
+---
+
+## 13. Milestones
+
+**Estimate:** ~2 weeks, built and owned end to end by Lashawn Fofung (product and engineering).
+
+| Phase | Timing | Deliverables | Depends on |
+|---|---|---|---|
+| **1. Collection & category separation** | Days 1–4 | Source connections, per-source result counts, separate data by category | Data API access |
+| **2. Scoring & labels** | Days 5–8 | Confidence score (3+ sources), minimum-evidence rule, Niche/Saturated labels | Phase 1 data |
+| **3. Reports & dashboard** | Days 9–11 | Scheduled and on-demand reports, dashboard feed, keyword module | Phase 2 |
+| **4. QA & launch** | Days 12–14 | Relevance spot audits (target 95%), end-to-end tests, user guide | All features complete |
+
+---
+
+## 14. MVP Delivered vs. v1 Spec
+
+*Based on the Shag Rug sample report generated March 31, 2026.*
+
+| Area | v1 spec | MVP as built |
+|---|---|---|
+| **Report** | Scheduled trend report | ✅ 12-page report: executive summary, market data, buyer profile, micro-segments, recommendations, and watch list |
+| **AI models** | Gemini | ✅ Mistral for classification, Gemini for synthesis |
+| **Images** | — | ✅ FLUX trend imagery (added beyond spec) |
+| **Retailer data** | Retailer listings | ⚠️ 6 Amazon products |
+| **Social and blog data** | Pinterest, Instagram, blogs | ❌ **0 Instagram posts, 0 Pinterest pins, 0 blog articles** returned |
+| **Confidence score** | Per trend, from 3+ sources | ❌ Not yet built |
+| **Niche / Saturated labels** | Per trend | ❌ Not yet built |
+| **SEO keywords and momentum** | Per trend | ❌ Not yet built |
+| **Dashboard** | Live Google Sheets | 🔄 Changed: HTML dashboard built in Step 5, fed by reports in Google Drive |
+
+**Lessons from the MVP**
+- **Sources can fail silently.** The social and blog sources returned nothing, but the report still read as confident, with claims like "Gray and Black leading sales" drawn from six product listings and the AI's general knowledge. The report did list its sources, which is how the gap was caught. v1 makes this a rule: count results per source (FR-3), and lower confidence when evidence is thin (FR-6).
+- **Label what's collected vs. what the AI knows.** Market size and buyer profiles are useful context, but they come from the model, not the run's data. FR-7 requires labeling the difference.
+- **The confidence score is the product.** Without it, the report is a well-written opinion. The scoring and evidence rules are what make the agent trustworthy enough for stocking decisions.
